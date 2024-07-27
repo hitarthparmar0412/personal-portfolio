@@ -160,7 +160,7 @@ h6 {
   list-style: none;
 }
 
-.nav-menu > ul > li {
+.nav-menu>ul>li {
   position: relative;
   white-space: nowrap;
 }
@@ -194,6 +194,7 @@ h6 {
 }
 
 @media (min-width: 992px) {
+
   .nav-menu a,
   .nav-menu a:focus {
     width: 56px;
@@ -209,7 +210,7 @@ h6 {
 .nav-menu a:hover,
 .nav-menu .active,
 .nav-menu .active:focus,
-.nav-menu li:hover > a {
+.nav-menu li:hover>a {
   color: #fff;
   background: #76093fed;
 }
@@ -217,18 +218,18 @@ h6 {
 .nav-menu a:hover span,
 .nav-menu .active span,
 .nav-menu .active:focus span,
-.nav-menu li:hover > a span {
+.nav-menu li:hover>a span {
   color: #fff;
 }
 
 .nav-menu a:hover,
-.nav-menu li:hover > a {
+.nav-menu li:hover>a {
   width: 100%;
   color: #fff;
 }
 
 .nav-menu a:hover span,
-.nav-menu li:hover > a span {
+.nav-menu li:hover>a span {
   display: block;
 }
 
@@ -241,13 +242,14 @@ h6 {
   top: 10px;
   z-index: 9998;
   border: 0;
-  background: none;
+  color: #fff;
+  background: #76093fed;
   font-size: 28px;
   transition: all 0.4s;
   outline: none !important;
   line-height: 0;
   cursor: pointer;
-  border-radius: 50px;
+  border-radius: 10px;
   padding: 5px;
 }
 
@@ -340,6 +342,7 @@ h6 {
   #hero .container {
     margin-top: 190px;
   }
+
   #hero h1 {
     font-size: 32px;
     line-height: 36px;
@@ -350,6 +353,7 @@ h6 {
     font-size: 20px;
     line-height: 24px;
   }
+
   #hero {
     width: 100%;
     height: 50vh;
@@ -763,10 +767,7 @@ section {
   position: relative;
 }
 
-.portfolio-details
-  .portfolio-details-slider
-  .swiper-pagination
-  .swiper-pagination-bullet {
+.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #fff;
@@ -774,10 +775,7 @@ section {
   border: 1px solid #76093fed;
 }
 
-.portfolio-details
-  .portfolio-details-slider
-  .swiper-pagination
-  .swiper-pagination-bullet-active {
+.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #76093fed;
 }
 
@@ -800,7 +798,7 @@ section {
   font-size: 15px;
 }
 
-.portfolio-details .portfolio-info ul li + li {
+.portfolio-details .portfolio-info ul li+li {
   margin-top: 10px;
 }
 
@@ -1101,7 +1099,7 @@ section {
   font-weight: 600;
 }
 
-.contact .php-email-form .error-message br + br {
+.contact .php-email-form .error-message br+br {
   margin-top: 25px;
 }
 
