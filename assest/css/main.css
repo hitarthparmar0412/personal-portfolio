@@ -1,0 +1,175 @@
+body {
+  /* background-color: rgb(247, 247, 248); */
+  background-color: #0a0f15;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  opacity: 0;
+  font-size: 48px;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to bottom, #000, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+/* .technology {
+  padding: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+.technology {
+  position: absolute;
+  z-index: -1 !important;
+  top: 0;
+}
+
+#main {
+  margin-top: 9%;
+}
+
+.technology div span {
+  font-size: 140px;
+  /* letter-spacing: 8px; */
+  text-decoration: 0 1px 0 rgba(255, 255, 255, 0.4);
+  color: #ffffff08;
+}
+.profile-image img {
+  position: relative;
+  z-index: 1 !important;
+  max-width: 100%;
+  height: auto;
+  /* width: 100%; */
+}
+
+.profile-image-bluer {
+  height: 275px;
+  width: 100%;
+  background-color: #0a0f15;
+  color: transparent;
+  margin-top: -84px;
+  z-index: 2 !important;
+  position: absolute;
+  filter: blur(45px);
+}
+
+.profile-image-name {
+  width: fit-content;
+  margin: auto;
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, 70%);
+  z-index: 3 !important; /* Ensure name is above the bluer background */
+  color: #000;
+}
+
+.profile-image-name h1 {
+  opacity: 0;
+  font-size: 100px;
+  font-weight: 600;
+  letter-spacing: 10px;
+  font-family: "Poppins", sans-serif;
+  background: linear-gradient(to top, #000, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  transform: translateY(100px);
+}
+
+.animate-loaded-name h1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+#first,
+#second {
+  opacity: 0;
+  /* transition: opacity 3s ease; */
+  transition: opacity 3s ease-in-out;
+}
+
+.first-technology-name-animation,
+.second-technology-name-animation {
+  opacity: 1 !important;
+}
+
+#main {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.animate-loaded {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Media Queries for Responsiveness */
+
+/* For screens smaller than 1200px (laptops/desktops) */
+@media (max-width: 1200px) {
+  .profile-image-name h1 {
+    font-size: 80px;
+    letter-spacing: 8px;
+  }
+}
+
+/* For tablets (screen width between 768px and 991px) */
+@media (max-width: 991px) {
+  .profile-image-name h1 {
+    font-size: 60px;
+    letter-spacing: 5px;
+  }
+
+  .profile-image-bluer {
+    height: 140px;
+    margin-top: -66px;
+  }
+
+  .profile-image-name {
+    transform: translate(-50%, 50%);
+  }
+}
+
+/* For mobile phones (screen width below 768px) */
+@media (max-width: 768px) {
+  .profile-image-name h1 {
+    font-size: 40px;
+    letter-spacing: 2px;
+  }
+
+  .profile-image-bluer {
+    height: 100px;
+    margin-top: -66px;
+  }
+
+  .profile-image img {
+    max-width: 80%;
+  }
+
+  .profile-image-name {
+    transform: translate(-50%, 50%);
+  }
+}
+
+/* For very small mobile phones (screen width below 480px) */
+@media (max-width: 480px) {
+  .profile-image-name h1 {
+    font-size: 30px;
+    letter-spacing: 1px;
+  }
+
+  .profile-image-bluer {
+    height: 80px;
+    margin-top: -50px;
+  }
+
+  .profile-image img {
+    max-width: 70%;
+  }
+}
