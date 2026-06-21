@@ -244,6 +244,19 @@ export const projects = [
     isFeatured: false,
     color: '#14B8A6',
   },
+  {
+    id: 'gopayana',
+    name: 'GoPayana',
+    category: 'Mobility Platform',
+    tag: 'RIDE TECH',
+    description: 'Mysuru\'s smart mobility platform — subscription-based auto & cab aggregator. Drivers pay ₹25/day flat, zero commissions. Transparent pricing, no surge fares. Built for Karnataka\'s local needs.',
+    tech: ['Flutter', 'Firebase', 'Google Maps SDK', 'Socket.IO', 'Razorpay'],
+    platforms: ['Android', 'iOS'],
+    link: 'https://payana.co',
+    isAI: false,
+    isFeatured: true,
+    color: '#F97316',
+  },
 ]
 
 export const services = [
@@ -563,6 +576,28 @@ export const projectDetails: Record<string, ProjectDetail> = {
     ],
     outcome:
       'Trusted by 2,000+ businesses across India. Buyers report 11–20% savings on wholesale procurement. Active verticals include hospitality, healthcare, textiles and manufacturing.',
+  },
+  gopayana: {
+    role: 'Lead Flutter Developer',
+    year: '2024 – Present',
+    features: [
+      'Dual-app architecture: separate Passenger and Driver apps from a single Flutter codebase',
+      'Real-time ride booking with auto and cab selection, instant driver matching via geo-queries',
+      'Live driver tracking on Google Maps with ETA and route polyline updates via Socket.IO',
+      'Driver subscription model: ₹25/day flat fee onboarding with Razorpay recurring billing',
+      'Zero-commission earnings model — all fares go directly to the driver',
+      'Transparent fare calculator with no surge pricing logic',
+      'OTP-based trip start and completion verification',
+      'In-app 24/7 support chat and ticket system',
+      'Admin dashboard to manage driver approvals, subscriptions and ride history',
+    ],
+    challenges: [
+      'Building a fair driver-matching algorithm that accounts for geo-proximity, vehicle type and driver availability without biasing against subscription tier',
+      'Implementing real-time Socket.IO location streaming that works reliably on low-bandwidth 3G networks common in tier-2 Karnataka cities',
+      'Designing the subscription billing flow so drivers are never blocked mid-shift due to payment failures — solved with a 24-hour grace period and SMS reminders',
+    ],
+    outcome:
+      'Live in Mysuru, Karnataka under Indeamind Technologies Pvt. Ltd. Tagline: "Ride Smart. Ride Local. Ride GoPayana." Disrupting local mobility by eliminating ride-app commissions — drivers keep 100% of fares on a flat ₹25/day subscription.',
   },
 }
 

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
+import { SplitText } from '@/components/ui/SplitText'
 
 // ─── Shared animation variants ───────────────────────────────────────────────
 
@@ -58,20 +59,36 @@ interface SectionHeadingProps {
 
 export function SectionHeading({ label, title, subtitle, className = 'mb-16' }: SectionHeadingProps) {
   return (
-    <motion.div
-      variants={fadeUp}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className={className}
-    >
-      <div className="flex items-center gap-3 mb-3">
-        <div className="h-px w-8 bg-[#E8B554]" />
-        <span className="text-[#E8B554] text-xs font-mono tracking-widest uppercase">{label}</span>
-      </div>
-      <h2 className="text-4xl md:text-5xl font-display font-bold text-white">{title}</h2>
-      {subtitle && <p className="text-white/50 mt-4 max-w-2xl text-[15px]">{subtitle}</p>}
-    </motion.div>
+    <div className={className}>
+      <motion.div
+        initial={{ opacity: 0, x: -16 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="flex items-center gap-3 mb-3"
+      >
+        <div className="h-px w-6 bg-[#E8B554]" />
+        <span className="text-[#E8B554] text-xs font-mono tracking-[0.2em] uppercase">{label}</span>
+      </motion.div>
+      <SplitText
+        text={title}
+        tag="h2"
+        className="font-display font-black text-white leading-[0.95] tracking-tight"
+        style={{ fontSize: 'clamp(2.4rem, 5vw, 4.2rem)' }}
+        delay={0.05}
+      />
+      {subtitle && (
+        <motion.p
+          initial={{ opacity: 0, y: 12 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="text-white/45 mt-4 max-w-2xl text-[15px] leading-relaxed"
+        >
+          {subtitle}
+        </motion.p>
+      )}
+    </div>
   )
 }
 
