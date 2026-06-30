@@ -86,7 +86,8 @@ export default function Testimonials() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="text-center text-[#9CA3AF] text-xs font-mono mt-8"
+          className="text-center text-xs font-mono mt-8"
+          style={{ color: 'var(--text-subtle)' }}
         >
           All testimonials are from verified client engagements · Names shared with permission
         </motion.p>

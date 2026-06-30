@@ -59,9 +59,9 @@ function PlatformBadge({ platform }: { platform: string }) {
     <span
       className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full font-mono font-medium"
       style={{
-        background: 'rgba(0,0,0,0.05)',
-        color: '#6B7280',
-        border: '1px solid rgba(0,0,0,0.1)',
+        background: 'var(--badge-bg)',
+        color: 'var(--badge-text)',
+        border: '1px solid var(--badge-border)',
       }}
     >
       {icons[platform]}
@@ -128,7 +128,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
   }
 
   return (
-    <main className="min-h-screen bg-[#050714]">
+    <main className="min-h-screen bg-[#050714] dark:bg-[#020409]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
@@ -139,8 +139,8 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
       <div
         className="relative overflow-hidden"
         style={{
-          background: `linear-gradient(135deg, ${project.color}10 0%, #FAFBFF 55%, #FAFBFF 100%)`,
-          borderBottom: '1px solid rgba(0,0,0,0.07)',
+          background: `linear-gradient(135deg, ${project.color}10 0%, var(--bg-base) 55%, var(--bg-base) 100%)`,
+          borderBottom: '1px solid var(--divider)',
         }}
       >
         {/* Radial glow behind the title */}
@@ -155,7 +155,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           {/* Back navigation */}
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 text-sm font-mono text-[#9CA3AF] hover:text-[#6366F1] transition-colors duration-200 mb-10 group"
+            className="inline-flex items-center gap-2 text-sm font-mono text-[#9CA3AF] dark:text-white/25 hover:text-[#6366F1] transition-colors duration-200 mb-10 group"
           >
             <ArrowLeft
               size={14}
@@ -200,14 +200,14 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
             {/* Year */}
             {detail && (
-              <span className="text-[11px] font-mono text-[#9CA3AF] ml-auto">
+              <span className="text-[11px] font-mono text-[#9CA3AF] dark:text-white/25 ml-auto">
                 {detail.year}
               </span>
             )}
           </div>
 
           {/* Project name */}
-          <h1 className="font-display font-bold text-white text-4xl sm:text-5xl md:text-6xl leading-tight mb-4">
+          <h1 className="font-display font-bold text-[#0A0B14] dark:text-[#F8FAFF] text-4xl sm:text-5xl md:text-6xl leading-tight mb-4">
             {project.name}
           </h1>
 
@@ -218,7 +218,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           </p>
 
           {/* Description */}
-          <p className="text-[#374151] text-[16px] leading-relaxed max-w-2xl">
+          <p className="text-[#374151] dark:text-white/75 text-[16px] leading-relaxed max-w-2xl">
             {project.description}
           </p>
 
@@ -244,9 +244,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               href="/#projects"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200"
               style={{
-                background: 'rgba(0,0,0,0.04)',
-                color: '#6B7280',
-                border: '1px solid rgba(0,0,0,0.08)',
+                background: 'var(--badge-bg)',
+                color: 'var(--badge-text)',
+                border: '1px solid var(--badge-border)',
               }}
             >
               <ArrowLeft size={14} />
@@ -280,7 +280,11 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 <div
                   key={i}
                   className="rounded-xl p-4 flex gap-3 items-start group transition-all duration-300"
-                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
+                  style={{
+                    background: 'var(--card-bg)',
+                    border: '1px solid var(--card-border)',
+                    boxShadow: 'var(--card-shadow)',
+                  }}
                 >
                   <span
                     className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-mono font-bold"
@@ -292,7 +296,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <p className="text-[#374151] text-sm leading-relaxed">{feature}</p>
+                  <p className="text-sm leading-relaxed" style={{ color: 'var(--text-body)' }}>{feature}</p>
                 </div>
               ))}
             </div>
@@ -308,7 +312,12 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 <div
                   key={i}
                   className="rounded-xl p-5 flex gap-4 items-start"
-                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderLeft: `3px solid ${project.color}50`, }}
+                  style={{
+                    background: 'var(--card-bg)',
+                    border: '1px solid var(--card-border)',
+                    borderLeft: `3px solid ${project.color}50`,
+                    boxShadow: 'var(--card-shadow)',
+                  }}
                 >
                   <span
                     className="flex-shrink-0 font-display font-bold text-2xl leading-none"
@@ -316,7 +325,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <p className="text-[#374151] text-[15px] leading-relaxed">{challenge}</p>
+                  <p className="text-[15px] leading-relaxed" style={{ color: 'var(--text-body)' }}>{challenge}</p>
                 </div>
               ))}
             </div>
@@ -330,12 +339,12 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             <div
               className="rounded-2xl p-7"
               style={{
-                background: `linear-gradient(135deg, ${project.color}06 0%, #FFFFFF 100%)`,
+                background: `linear-gradient(135deg, ${project.color}06 0%, var(--card-bg) 100%)`,
                 border: `1px solid ${project.color}20`,
-                boxShadow: '0 4px 24px rgba(0,0,0,0.05)',
+                boxShadow: 'var(--card-shadow)',
               }}
             >
-              <p className="text-[#374151] text-[16px] leading-relaxed">{detail.outcome}</p>
+              <p className="text-[16px] leading-relaxed" style={{ color: 'var(--text-body)' }}>{detail.outcome}</p>
             </div>
           </section>
         )}
@@ -344,16 +353,16 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
         <div
           className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 rounded-2xl p-7"
           style={{
-            background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(0,0,0,0.08)',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+            background: 'var(--card-bg)',
+            border: '1px solid var(--card-border)',
+            boxShadow: 'var(--card-shadow)',
           }}
         >
           <div>
-            <p className="text-white font-display font-semibold text-lg mb-1">
+            <p className="font-display font-semibold text-lg mb-1" style={{ color: 'var(--text-heading)' }}>
               Interested in working together?
             </p>
-            <p className="text-[#6B7280] text-sm font-mono">
+            <p className="text-sm font-mono" style={{ color: 'var(--text-muted)' }}>
               I&apos;m open to new projects — let&apos;s build something great.
             </p>
           </div>

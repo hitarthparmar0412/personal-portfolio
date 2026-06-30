@@ -84,7 +84,7 @@ export function SectionHeading({ label, title, subtitle, className = 'mb-10' }: 
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="text-white/40 mt-1 max-w-2xl text-[15px] leading-relaxed"
+          className="text-[#6B7280] dark:text-white/44 mt-1 max-w-2xl text-[15px] leading-relaxed"
         >
           {subtitle}
         </motion.p>
@@ -110,7 +110,12 @@ export function GlassCard({ children, className = '', hover = true, style }: Gla
         ${hover ? 'hover:scale-[1.02] hover:-translate-y-1' : ''}
         ${className}
       `}
-      style={style}
+      style={{
+        background: 'var(--card-bg)',
+        border: '1px solid var(--card-border)',
+        boxShadow: 'var(--card-shadow)',
+        ...style,
+      }}
     >
       {children}
     </div>
@@ -127,7 +132,7 @@ const TAG_STYLES: Record<TagVariant, string> = {
   purple: 'bg-purple-500/10 border-purple-500/20 text-purple-600',
   green:  'bg-emerald-500/10 border-emerald-500/20 text-emerald-600',
   red:    'bg-rose-500/10 border-rose-500/20 text-rose-600',
-  mono:   'bg-white/5 border-white/10 text-white/50',
+  mono:   '',
 }
 
 interface TagProps {
@@ -137,6 +142,20 @@ interface TagProps {
 }
 
 export function Tag({ children, variant = 'blue', className = '' }: TagProps) {
+  if (variant === 'mono') {
+    return (
+      <span
+        className={`inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono border ${className}`}
+        style={{
+          background: 'var(--badge-bg)',
+          border: '1px solid var(--badge-border)',
+          color: 'var(--text-subtle)',
+        }}
+      >
+        {children}
+      </span>
+    )
+  }
   return (
     <span className={`
       inline-flex items-center px-2.5 py-0.5 rounded text-xs font-mono
@@ -161,7 +180,7 @@ export function Button({ variant = 'primary', children, className = '', ...props
   const variants: Record<ButtonVariant, string> = {
     primary:   'bg-gradient-to-r from-[#6366F1] to-[#A855F7] text-white hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(99,102,241,0.35)]',
     secondary: 'border border-[#6366F1]/40 text-[#6366F1] hover:bg-[#6366F1]/10 backdrop-blur-sm',
-    ghost:     'text-[#6B7280] hover:text-[#374151] hover:bg-black/5',
+    ghost:     'text-[#6B7280] dark:text-white/44 hover:text-[#374151] dark:hover:text-white/75 hover:bg-black/5 dark:hover:bg-white/5',
   }
   return (
     <button className={`${base} ${variants[variant]} ${className}`} {...props}>
