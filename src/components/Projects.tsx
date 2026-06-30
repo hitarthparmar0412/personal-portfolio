@@ -29,7 +29,7 @@ function PlatformBadge({ platform }: { platform: string }) {
   return (
     <span
       className="inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-md font-mono"
-      style={{ background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.08)' }}
+      style={{ background: 'var(--badge-bg)', color: 'var(--badge-text)', border: '1px solid var(--badge-border)' }}
     >
       {icons[platform]}
       {platform}
@@ -48,9 +48,9 @@ function ProjectCard({ project, large = false }: { project: typeof projects[0]; 
       whileHover={{ scale: large ? 1.01 : 1.02, y: -4 }}
       className="rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full group"
       style={{
-        background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(255,255,255,0.07)',
-        
+        background: 'var(--card-bg)',
+        border: '1px solid var(--card-border)',
+        boxShadow: 'var(--card-shadow)',
       }}
     >
       {/* Preview banner */}
@@ -117,16 +117,16 @@ function ProjectCard({ project, large = false }: { project: typeof projects[0]; 
           >
             {project.tag}
           </span>
-          <span className="text-[10px] text-white/25 font-mono">{project.category}</span>
+          <span className="text-[10px] font-mono" style={{ color: 'var(--text-subtle)' }}>{project.category}</span>
         </div>
 
         {/* Name */}
-        <h3 className={`font-display font-bold text-white mb-2 ${large ? 'text-xl' : 'text-base'}`}>
+        <h3 className={`font-display font-bold mb-2 ${large ? 'text-xl' : 'text-base'}`} style={{ color: 'var(--text-heading)' }}>
           {project.name}
         </h3>
 
       {/* Description */}
-      <p className="text-white/55 text-sm leading-relaxed mb-5 flex-1">
+      <p className="text-sm leading-relaxed mb-5 flex-1" style={{ color: 'var(--text-muted)' }}>
         {project.description}
       </p>
 
@@ -144,7 +144,7 @@ function ProjectCard({ project, large = false }: { project: typeof projects[0]; 
       </div>
 
       {/* Bottom row */}
-      <div className="flex items-center justify-between pt-4" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+      <div className="flex items-center justify-between pt-4" style={{ borderTop: '1px solid var(--divider)' }}>
         <div className="flex gap-1.5">
           {project.platforms.map((p) => <PlatformBadge key={p} platform={p} />)}
         </div>
@@ -156,9 +156,9 @@ function ProjectCard({ project, large = false }: { project: typeof projects[0]; 
             href={`/projects/${project.id}`}
             className="flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all duration-200 hover:opacity-80"
             style={{
-              color: '#6B7280',
-              background: 'rgba(255,255,255,0.04)',
-              border: '1px solid rgba(255,255,255,0.07)',
+              color: 'var(--badge-text)',
+              background: 'var(--badge-bg)',
+              border: '1px solid var(--badge-border)',
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -201,7 +201,7 @@ export default function Projects() {
       })
 
   return (
-    <section id="projects" className="py-24 bg-[#050714]">
+    <section id="projects" className="py-24 bg-[#FAFBFF] dark:bg-[#020409]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeading
           label="Portfolio"
@@ -244,9 +244,9 @@ export default function Projects() {
               onClick={() => setActiveFilter(filter)}
               className="px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-200"
               style={{
-                background: activeFilter === filter ? 'rgba(99,102,241,0.15)' : 'rgba(255,255,255,0.04)',
-                color: activeFilter === filter ? '#818CF8' : 'rgba(255,255,255,0.45)',
-                border: activeFilter === filter ? '1px solid rgba(99,102,241,0.3)' : '1px solid rgba(255,255,255,0.08)',
+                background: activeFilter === filter ? 'rgba(99,102,241,0.15)' : 'var(--badge-bg)',
+                color: activeFilter === filter ? '#818CF8' : 'var(--badge-text)',
+                border: activeFilter === filter ? '1px solid rgba(99,102,241,0.3)' : '1px solid var(--badge-border)',
               }}
             >
               {filter}
@@ -267,7 +267,8 @@ export default function Projects() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-16 text-white/35 font-mono"
+            className="text-center py-16 font-mono"
+          style={{ color: 'var(--text-subtle)' }}
           >
             No projects in this category yet.
           </motion.div>

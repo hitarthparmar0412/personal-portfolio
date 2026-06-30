@@ -27,7 +27,7 @@ export default function Skills() {
   const current = categories.find(c => c.id === active)!
 
   return (
-    <section id="skills" className="bg-[#09091F] overflow-hidden">
+    <section id="skills" className="bg-[#F0F4FF] dark:bg-[#080B14] overflow-hidden">
 
       {/* ── Hero banner ── */}
       <div className="max-w-6xl mx-auto px-6 pt-10 pb-6">
@@ -53,7 +53,7 @@ export default function Skills() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="text-white/45 text-sm font-mono max-w-md"
+          className="text-[#6B7280] dark:text-white/44 text-sm font-mono max-w-md"
         >
           50+ technologies across 9 domains — 4+ years of production experience
         </motion.p>
@@ -77,7 +77,7 @@ export default function Skills() {
                     }
                   }}
                   className="group flex items-center gap-4 py-4 text-left transition-all duration-300 relative"
-                  style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+                  style={{ borderBottom: '1px solid var(--divider)' }}
                 >
                   {/* Active indicator bar */}
                   <motion.div
@@ -89,7 +89,7 @@ export default function Skills() {
 
                   <span
                     className="text-[11px] font-mono transition-colors duration-300 w-7 shrink-0 pl-3"
-                    style={{ color: isActive ? cat.accent : 'rgba(255,255,255,0.2)' }}
+                    style={{ color: isActive ? cat.accent : 'var(--text-subtle)' }}
                   >
                     {cat.num}
                   </span>
@@ -97,7 +97,7 @@ export default function Skills() {
                   <span
                     className="font-display font-semibold text-sm transition-all duration-300"
                     style={{
-                      color: isActive ? 'rgba(255,255,255,0.92)' : 'rgba(255,255,255,0.35)',
+                      color: isActive ? 'var(--text-heading)' : 'var(--text-muted)',
                       transform: isActive ? 'translateX(4px)' : 'translateX(0)',
                     }}
                   >
@@ -107,9 +107,9 @@ export default function Skills() {
                   <span
                     className="ml-auto text-[10px] font-mono px-2 py-0.5 rounded-full transition-all duration-300"
                     style={{
-                      background: isActive ? `${cat.accent}18` : 'rgba(255,255,255,0.04)',
-                      color: isActive ? cat.accent : 'rgba(255,255,255,0.2)',
-                      border: isActive ? `1px solid ${cat.accent}30` : '1px solid rgba(255,255,255,0.06)',
+                      background: isActive ? `${cat.accent}18` : 'var(--badge-bg)',
+                      color: isActive ? cat.accent : 'var(--badge-text)',
+                      border: isActive ? `1px solid ${cat.accent}30` : '1px solid var(--badge-border)',
                     }}
                   >
                     {cat.items.length}
@@ -140,12 +140,12 @@ export default function Skills() {
                   </div>
                   <div>
                     <h3
-                      className="font-display font-black text-white leading-tight"
-                      style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)' }}
+                      className="font-display font-black leading-tight"
+                      style={{ fontSize: 'clamp(1.6rem, 3vw, 2.5rem)', color: 'var(--text-heading)' }}
                     >
                       {current.title}
                     </h3>
-                    <p className="text-white/35 font-mono text-xs mt-1">
+                    <p className="text-[#9CA3AF] dark:text-white/25 font-mono text-xs mt-1">
                       {current.items.length} skills in this category
                     </p>
                   </div>

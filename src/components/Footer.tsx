@@ -9,8 +9,8 @@ export default function Footer() {
 
   return (
     <footer
-      className="py-10"
-      style={{ background: '#0A0B14', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+      className="py-10 bg-[#0A0B14] dark:bg-[#030611]"
+      style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col items-center gap-6">

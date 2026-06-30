@@ -7,7 +7,7 @@ import { SectionHeading } from '@/components/ui'
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 bg-[#09091F]">
+    <section id="experience" className="py-24 bg-[#F0F4FF] dark:bg-[#080B14]">
       <div className="max-w-5xl mx-auto px-6">
         <SectionHeading label="Career Path" title="Work Experience" />
 
@@ -34,7 +34,7 @@ export default function Experience() {
                   className="absolute left-1/2 top-8 w-4 h-4 rounded-full border-2 hidden md:block"
                   style={{
                     background: exp.color,
-                    borderColor: '#09091F',
+                    borderColor: 'var(--bg-alt)',
                     transform: 'translateX(-50%)',
                     boxShadow: `0 0 20px ${exp.color}60`,
                     zIndex: 10,
@@ -70,11 +70,16 @@ function ExperienceCard({ exp }: { exp: typeof experience[0] }) {
   return (
     <div
       className="rounded-2xl p-6 transition-all duration-300"
-      style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderLeft: `3px solid ${exp.color}` }}
+      style={{
+        background: 'var(--card-bg)',
+        border: '1px solid var(--card-border)',
+        borderLeft: `3px solid ${exp.color}`,
+        boxShadow: 'var(--card-shadow)',
+      }}
     >
       {/* Company & period */}
       <div className="flex items-start justify-between flex-wrap gap-2 mb-2">
-        <h3 className="font-display font-bold text-white text-lg leading-tight">{exp.company}</h3>
+        <h3 className="font-display font-bold text-lg leading-tight" style={{ color: 'var(--text-heading)' }}>{exp.company}</h3>
         <span
           className="text-xs px-3 py-1 rounded-full font-mono whitespace-nowrap"
           style={{ background: `${exp.color}18`, color: exp.color, border: `1px solid ${exp.color}30` }}
@@ -89,7 +94,7 @@ function ExperienceCard({ exp }: { exp: typeof experience[0] }) {
       </div>
 
       {/* Location */}
-      <div className="flex items-center gap-1.5 text-[#6B7280] text-xs font-mono mb-5">
+      <div className="flex items-center gap-1.5 text-xs font-mono mb-5 text-[#6B7280] dark:text-white/44">
         <MapPin size={11} />
         {exp.location}
       </div>
@@ -97,7 +102,7 @@ function ExperienceCard({ exp }: { exp: typeof experience[0] }) {
       {/* Highlights */}
       <ul className="space-y-2.5">
         {exp.highlights.map((h, i) => (
-          <li key={i} className="flex items-start gap-2.5 text-sm text-[#1F2937] leading-relaxed">
+          <li key={i} className="flex items-start gap-2.5 text-sm leading-relaxed text-[#1F2937] dark:text-white/75">
             <CheckCircle2 size={13} className="mt-0.5 shrink-0" style={{ color: exp.color }} />
             {h}
           </li>

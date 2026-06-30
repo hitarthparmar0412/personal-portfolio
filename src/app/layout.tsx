@@ -184,11 +184,13 @@ import SmoothScroll from '@/components/SmoothScroll'
 import TopNavigation from '@/components/TopNavigation'
 import Footer from '@/components/Footer'
 import { ScrollProgress } from '@/components/ScrollProgress'
+import { ThemeProvider } from '@/components/ThemeProvider'
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${inter.variable} ${jetbrainsMono.variable}`}>
       <head>
+        <script dangerouslySetInnerHTML={{ __html: `(function(){var t=localStorage.getItem('theme')||((window.matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light');if(t==='dark')document.documentElement.classList.add('dark')})()` }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
@@ -203,19 +205,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body>
-        <SmoothScroll>
-          <TopNavigation />
-          <ScrollProgress />
-          <div className="pt-16">
-            {children}
-          </div>
-          <Footer />
-        </SmoothScroll>
-        <Script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="0DUF4iFpBs+a/Q5LGgd2BQ"
-          strategy="afterInteractive"
-        />
+        <ThemeProvider>
+          <SmoothScroll>
+            <TopNavigation />
+            <ScrollProgress />
+            <div className="pt-16">
+              {children}
+            </div>
+            <Footer />
+          </SmoothScroll>
+          <Script
+            src="https://analytics.ahrefs.com/analytics.js"
+            data-key="0DUF4iFpBs+a/Q5LGgd2BQ"
+            strategy="afterInteractive"
+          />
+        </ThemeProvider>
       </body>
     </html>
   )

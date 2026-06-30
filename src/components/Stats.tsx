@@ -57,7 +57,7 @@ function AnimatedCounter({ value, suffix, dynamic = false, duration = 2 }: Anima
 
 export default function Stats() {
   return (
-    <section className="py-16" style={{ background: '#09091F', borderTop: '1px solid rgba(99,102,241,0.08)', borderBottom: '1px solid rgba(99,102,241,0.08)' }}>
+    <section className="py-16 bg-[#FAFBFF] dark:bg-[#020409]" style={{ borderTop: '1px solid rgba(99,102,241,0.08)', borderBottom: '1px solid rgba(99,102,241,0.08)' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
@@ -68,11 +68,11 @@ export default function Stats() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className="rounded-2xl p-6 text-center transition-all duration-300 group"
-              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(99,102,241,0.1)' }}
+              style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)', boxShadow: 'var(--card-shadow)' }}
             >
               <AnimatedCounter value={stat.value} suffix={stat.suffix} dynamic={stat.dynamic} />
-              <div className="text-white/80 font-semibold mt-2 text-sm md:text-base">{stat.label}</div>
-              <div className="text-white/35 text-xs mt-1 font-mono">{stat.sublabel}</div>
+              <div className="text-[#1F2937] dark:text-white/75 font-semibold mt-2 text-sm md:text-base">{stat.label}</div>
+              <div className="text-[#9CA3AF] dark:text-white/25 text-xs mt-1 font-mono">{stat.sublabel}</div>
             </motion.div>
           ))}
         </div>

@@ -7,7 +7,7 @@ import { SectionHeading } from '@/components/ui'
 
 export default function Awards() {
   return (
-    <section id="awards" className="py-24 bg-[#050714]">
+    <section id="awards" className="py-24 bg-[#050714] dark:bg-[#080B14]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeading label="Recognition" title="Awards" />
 
@@ -21,7 +21,11 @@ export default function Awards() {
               transition={{ duration: 0.6, delay: i * 0.15 }}
               whileHover={{ scale: 1.02, y: -6 }}
               className="rounded-2xl p-8 transition-all duration-300 relative overflow-hidden"
-              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
+              style={{
+                background: 'var(--card-bg)',
+                border: '1px solid var(--card-border)',
+                boxShadow: 'var(--card-shadow)',
+              }}
             >
               {/* Background number watermark */}
               <div
@@ -48,10 +52,10 @@ export default function Awards() {
               </div>
 
               {/* Content */}
-              <h3 className="text-xl font-display font-bold text-white mb-3">
+              <h3 className="text-xl font-display font-bold text-[#0A0B14] dark:text-[#F8FAFF] mb-3">
                 {award.title}
               </h3>
-              <p className="text-[#1F2937] text-sm leading-relaxed mb-5">
+              <p className="text-[#374151] dark:text-white/75 text-sm leading-relaxed mb-5">
                 {award.description}
               </p>
 
@@ -61,7 +65,12 @@ export default function Awards() {
                   className="w-1.5 h-1.5 rounded-full"
                   style={{ background: '#6366F1' }}
                 />
-                <span className="text-xs font-mono text-[#6B7280]">{award.company}</span>
+                <span
+                  className="text-xs font-mono px-2 py-0.5 rounded"
+                  style={{ color: 'var(--text-muted)', background: 'var(--badge-bg)', border: '1px solid var(--badge-border)' }}
+                >
+                  {award.company}
+                </span>
               </div>
             </motion.div>
           ))}

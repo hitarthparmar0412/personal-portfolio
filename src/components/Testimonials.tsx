@@ -8,7 +8,7 @@ import { SplitText } from '@/components/ui/SplitText'
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="py-20 bg-[#050714]">
+    <section id="testimonials" className="py-20 bg-[#F0F4FF] dark:bg-[#080B14]">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Header */}
@@ -43,9 +43,9 @@ export default function Testimonials() {
               transition={{ duration: 0.55, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
               className="relative rounded-2xl p-7 flex flex-col gap-5"
               style={{
-                background: 'rgba(255,255,255,0.03)',
-                border: '1px solid rgba(255,255,255,0.07)',
-                boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
+                background: 'var(--card-bg)',
+                border: '1px solid var(--card-border)',
+                boxShadow: 'var(--card-shadow)',
               }}
             >
               {/* Top accent */}
@@ -56,13 +56,13 @@ export default function Testimonials() {
               <Quote size={20} style={{ color: t.color, opacity: 0.4 }} />
 
               {/* Quote text */}
-              <p className="text-[#374151] text-[15px] leading-relaxed flex-1 italic">
+              <p className="text-[15px] leading-relaxed flex-1 italic" style={{ color: 'var(--text-body)' }}>
                 &ldquo;{t.quote}&rdquo;
               </p>
 
               {/* Author */}
               <div className="flex items-center gap-3 pt-4"
-                style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+                style={{ borderTop: '1px solid var(--divider)' }}>
                 {/* Avatar monogram */}
                 <div
                   className="w-10 h-10 rounded-full flex items-center justify-center font-display font-black text-sm shrink-0"
@@ -71,9 +71,9 @@ export default function Testimonials() {
                   {t.avatar}
                 </div>
                 <div>
-                  <div className="text-white font-semibold text-sm">{t.name}</div>
-                  <div className="text-white/40 text-xs font-mono mt-0.5">{t.title} · {t.company}</div>
-                  <div className="text-white/25 text-[11px] font-mono mt-0.5">{t.location}</div>
+                  <div className="font-semibold text-sm" style={{ color: 'var(--text-heading)' }}>{t.name}</div>
+                  <div className="text-xs font-mono mt-0.5" style={{ color: 'var(--text-muted)' }}>{t.title} · {t.company}</div>
+                  <div className="text-[11px] font-mono mt-0.5" style={{ color: 'var(--text-subtle)' }}>{t.location}</div>
                 </div>
               </div>
             </motion.div>

@@ -22,7 +22,7 @@ const highlights = [
 
 export default function About() {
   return (
-    <section id="about" className="py-24 lg:py-32 bg-[#09091F] overflow-hidden">
+    <section id="about" className="py-24 lg:py-32 bg-[#FAFBFF] dark:bg-[#020409] overflow-hidden">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeading label="Who I Am" title="About Me" />
 
@@ -57,7 +57,7 @@ export default function About() {
                   filter: 'blur(1.5px)',
                 }}
               />
-              <div className="absolute -inset-[2px] rounded-[2rem]" style={{ background: '#09091F' }} />
+              <div className="absolute -inset-[2px] rounded-[2rem]" style={{ background: 'var(--bg-base)' }} />
 
               {/* Photo */}
               <div
@@ -77,7 +77,7 @@ export default function About() {
                 />
                 <div
                   className="absolute bottom-0 left-0 right-0 h-28"
-                  style={{ background: 'linear-gradient(to top, rgba(250,251,255,0.9), transparent)' }}
+                  style={{ background: 'linear-gradient(to top, var(--overlay), transparent)' }}
                 />
               </div>
 
@@ -97,16 +97,16 @@ export default function About() {
                     className="absolute rounded-2xl px-4 py-3 backdrop-blur-xl"
                     style={{
                       ...positions[i],
-                      background: 'rgba(255,255,255,0.03)',
+                      background: 'var(--card-bg)',
                       border: `1px solid ${h.color}20`,
-                      boxShadow: `0 8px 28px rgba(0,0,0,0.1), 0 0 20px ${h.color}10`,
+                      boxShadow: `var(--card-shadow), 0 0 20px ${h.color}10`,
                     }}
                   >
                     <div className="flex items-center gap-2">
                       <h.icon size={14} style={{ color: h.color }} />
                       <span className="font-bold font-display text-sm" style={{ color: h.color }}>{h.label}</span>
                     </div>
-                    <div className="text-[#9CA3AF] text-[11px] font-mono mt-0.5 pl-5">{h.sub}</div>
+                    <div className="text-[#9CA3AF] dark:text-white/25 text-[11px] font-mono mt-0.5 pl-5">{h.sub}</div>
                   </motion.div>
                 )
               })}
@@ -122,22 +122,22 @@ export default function About() {
           >
             <h3
               className="font-display font-bold mb-1"
-              style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)', color: '#F8F8FF' }}
+              style={{ fontSize: 'clamp(1.4rem, 2.5vw, 1.9rem)', color: 'var(--text-heading)' }}
             >
               Senior Software Engineer
             </h3>
             <p className="text-[#6366F1] font-mono text-sm mb-6 tracking-wide">Flutter · AI · Mobile · Web</p>
 
-            <p className="text-[#1F2937] leading-relaxed mb-4 text-[15px]">
+            <p className="text-[#1F2937] dark:text-white/75 leading-relaxed mb-4 text-[15px]">
               {personalInfo.bio}
             </p>
-            <p className="text-[#1F2937] leading-relaxed mb-8 text-[15px]">
+            <p className="text-[#1F2937] dark:text-white/75 leading-relaxed mb-8 text-[15px]">
               {personalInfo.bio2}
             </p>
 
             {/* Info grid */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6 mb-8 pb-8"
-              style={{ borderBottom: '1px solid rgba(255,255,255,0.06)' }}
+              style={{ borderBottom: '1px solid var(--divider)' }}
             >
               {infoItems.map((item, i) => (
                 <motion.div
@@ -155,8 +155,8 @@ export default function About() {
                     <item.icon size={13} style={{ color: '#6366F1' }} />
                   </div>
                   <div>
-                    <div className="text-[#9CA3AF] text-[11px] font-mono uppercase tracking-wider">{item.label}</div>
-                    <div className={`text-white/80 text-sm font-medium mt-0.5 ${item.short ? 'break-all' : ''}`}>
+                    <div className="text-[#9CA3AF] dark:text-white/25 text-[11px] font-mono uppercase tracking-wider">{item.label}</div>
+                    <div className={`text-[#1F2937] dark:text-white/75 text-sm font-medium mt-0.5 ${item.short ? 'break-all' : ''}`}>
                       {item.value}
                     </div>
                   </div>
@@ -184,7 +184,7 @@ export default function About() {
                 whileHover={{ scale: 1.04, background: 'rgba(99,102,241,0.08)', borderColor: 'rgba(99,102,241,0.3)' }}
                 whileTap={{ scale: 0.97 }}
                 className="flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-200"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', color: '#818CF8' }}
+                style={{ background: 'var(--card-bg)', border: '1px solid var(--card-border)', color: '#818CF8' }}
               >
                 <ExternalLink size={14} />
                 LinkedIn

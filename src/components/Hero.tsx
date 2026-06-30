@@ -4,8 +4,10 @@ import Image from 'next/image'
 import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
 import { Linkedin, Instagram, MessageCircle, ChevronDown, ArrowRight } from 'lucide-react'
 import { personalInfo } from '@/lib/data'
+import { useTheme } from './ThemeProvider'
 
 export default function Hero() {
+  const { theme } = useTheme()
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
   const orb1X = useSpring(useTransform(mouseX, [0, 1], [-30, 30]), { stiffness: 50, damping: 20 })
@@ -23,7 +25,7 @@ export default function Hero() {
       id="hero"
       onMouseMove={handleMouse}
       className="relative min-h-screen flex items-center overflow-hidden"
-      style={{ background: '#050714' }}
+      style={{ background: 'var(--bg-base)' }}
     >
       {/* === BACKGROUND LAYER === */}
       <div className="absolute inset-0 pointer-events-none">
@@ -44,19 +46,21 @@ export default function Hero() {
         />
         {/* Ambient orbs — parallax only, no breathing animation */}
         <motion.div
-          className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full opacity-[0.15]"
+          className="absolute -top-40 -right-40 w-[700px] h-[700px] rounded-full"
           style={{
             x: orb1X, y: orb1Y,
             background: 'radial-gradient(circle at 40% 40%, #6366F1 0%, #A855F7 40%, transparent 70%)',
             filter: 'blur(60px)',
+            opacity: 'var(--orb-opacity)' as unknown as number,
           }}
         />
         <motion.div
-          className="absolute -bottom-40 -left-20 w-[600px] h-[600px] rounded-full opacity-[0.12]"
+          className="absolute -bottom-40 -left-20 w-[600px] h-[600px] rounded-full"
           style={{
             x: orb2X, y: orb2Y,
             background: 'radial-gradient(circle at 60% 60%, #06B6D4 0%, #22D3EE 40%, transparent 70%)',
             filter: 'blur(60px)',
+            opacity: 'var(--orb-opacity)' as unknown as number,
           }}
         />
         {/* SVG illustration — floating code brackets (decorative) */}
@@ -107,8 +111,9 @@ export default function Hero() {
             >
               <Image src="/images/profile.jpg" alt="Hitarth Parmar" fill className="object-cover object-top" priority />
               <div className="absolute bottom-0 left-0 right-0 h-16"
-                style={{ background: 'linear-gradient(to top, rgba(5,7,20,0.9), transparent)' }} />
-              <div className="absolute bottom-3 left-3 text-[#6B7280] font-mono text-[10px] tracking-wider">
+                style={{ background: 'var(--overlay)' }} />
+              <div className="absolute bottom-3 left-3 font-mono text-[10px] tracking-wider"
+                style={{ color: 'var(--text-muted)' }}>
                 Senior Flutter Engineer
               </div>
             </div>
@@ -140,11 +145,10 @@ export default function Hero() {
               className="font-display font-black leading-[0.88] tracking-tighter select-none"
               style={{ fontSize: 'clamp(3rem, 7.5vw, 7rem)' }}
             >
-              <span style={{
-                background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}>
+              <span style={theme === 'dark'
+                ? { background: 'linear-gradient(135deg, #818CF8 0%, #C4B5FD 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }
+                : { background: 'linear-gradient(135deg, #0A0B14 0%, #374151 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }
+              }>
                 The engineer
               </span>
               <br />
@@ -152,6 +156,7 @@ export default function Hero() {
                 background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 50%, #06B6D4 100%)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
               }}>
                 behind 7M users.
               </span>
@@ -174,7 +179,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="text-[#374151] text-sm md:text-base max-w-md leading-relaxed mb-10 font-sans"
+            className="text-[#374151] dark:text-white/75 text-sm md:text-base max-w-md leading-relaxed mb-10 font-sans"
           >
             I&apos;ve shipped ride apps, payment platforms, and AI products used by <span className="text-white font-semibold">7M+ people</span> in 24 countries. I build what works — on time, at scale, without drama.
           </motion.p>
@@ -200,7 +205,7 @@ export default function Hero() {
               whileTap={{ scale: 0.97 }}
               onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
               className="flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm transition-all duration-200"
-              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.7)' }}
+              style={{ background: 'var(--badge-bg)', border: '1px solid var(--border-default)', color: 'var(--text-body)' }}
             >
               View My Work
             </motion.button>
@@ -221,15 +226,15 @@ export default function Hero() {
               <motion.a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
                 whileHover={{ scale: 1.15, y: -2, background: `${s.color}18`, borderColor: `${s.color}50` }}
                 className="w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-200"
-                style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.45)' }}
+                style={{ background: 'var(--badge-bg)', border: '1px solid var(--border-default)', color: 'var(--text-muted)' }}
                 title={s.label}
                 aria-label={s.label}
               >
                 {s.icon}
               </motion.a>
             ))}
-            <div className="w-px h-5 bg-black/10 mx-1" />
-            <span className="text-[#9CA3AF] text-xs font-mono">Ahmedabad, IN</span>
+            <div className="w-px h-5 mx-1" style={{ background: 'var(--divider)' }} />
+            <span className="text-[#9CA3AF] dark:text-white/25 text-xs font-mono">Ahmedabad, IN</span>
           </motion.div>
         </div>
 
@@ -252,7 +257,7 @@ export default function Hero() {
             />
             {/* Static backing */}
             <div className="absolute -inset-[3px] rounded-[2.5rem]"
-              style={{ background: '#050714', borderRadius: '2.5rem' }} />
+              style={{ background: 'var(--bg-base)', borderRadius: '2.5rem' }} />
 
             {/* Photo frame */}
             <div className="relative overflow-hidden"
@@ -269,18 +274,18 @@ export default function Hero() {
               />
               {/* Bottom gradient overlay */}
               <div className="absolute bottom-0 left-0 right-0 h-32"
-                style={{ background: 'linear-gradient(to top, rgba(5,7,20,0.85) 0%, transparent 100%)' }} />
+                style={{ background: 'var(--overlay)' }} />
               {/* Name overlay */}
               <div className="absolute bottom-5 left-5 right-5">
-                <div className="text-white font-display font-bold text-lg leading-tight">Hitarth Parmar</div>
-                <div className="text-[#6B7280] font-mono text-xs">Senior Software Engineer</div>
+                <div className="font-display font-bold text-lg leading-tight" style={{ color: 'var(--text-heading)' }}>Hitarth Parmar</div>
+                <div className="font-mono text-xs" style={{ color: 'var(--text-muted)' }}>Senior Software Engineer</div>
               </div>
             </div>
 
             {/* HP monogram watermark behind */}
             <div
               className="absolute -z-10 -bottom-8 -right-8 font-display font-black select-none pointer-events-none"
-              style={{ fontSize: '140px', color: 'rgba(0,0,0,0.03)', lineHeight: 1, letterSpacing: '-0.05em' }}
+              style={{ fontSize: '140px', color: 'var(--border-subtle)', lineHeight: 1, letterSpacing: '-0.05em' }}
             >
               HP
             </div>
@@ -294,7 +299,8 @@ export default function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4 }}
         onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-black/20 hover:text-black/50 transition-colors duration-300 z-20"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 transition-colors duration-300 z-20"
+        style={{ color: 'var(--text-subtle)' }}
       >
         <span className="text-[10px] font-mono tracking-[0.25em] uppercase">Scroll</span>
         <motion.div animate={{ y: [0, 7, 0] }} transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}>

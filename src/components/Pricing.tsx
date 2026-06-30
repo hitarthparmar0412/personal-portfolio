@@ -84,7 +84,7 @@ export default function Pricing() {
   }, [])
 
   return (
-    <section id="pricing" className="py-20 bg-[#050714]">
+    <section id="pricing" className="py-20 bg-[#050714] dark:bg-[#020409]">
       <div className="max-w-6xl mx-auto px-6">
 
         {/* Header row */}
@@ -116,14 +116,14 @@ export default function Pricing() {
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
             className="flex items-center gap-1 p-1 rounded-xl self-start sm:self-auto shrink-0"
-            style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)' }}
+            style={{ background: 'var(--badge-bg)', border: '1px solid var(--badge-border)' }}
           >
             <button
               onClick={() => setCurrency('USD')}
               className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-mono font-semibold transition-all duration-200"
               style={{
-                background: currency === 'USD' ? 'rgba(255,255,255,0.1)' : 'transparent',
-                color: currency === 'USD' ? '#fff' : 'rgba(255,255,255,0.35)',
+                background: currency === 'USD' ? 'var(--card-border)' : 'transparent',
+                color: currency === 'USD' ? 'var(--text-heading)' : 'var(--text-subtle)',
               }}
             >
               <DollarSign size={11} /> USD
@@ -132,8 +132,8 @@ export default function Pricing() {
               onClick={() => setCurrency('INR')}
               className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-xs font-mono font-semibold transition-all duration-200"
               style={{
-                background: currency === 'INR' ? 'rgba(255,255,255,0.1)' : 'transparent',
-                color: currency === 'INR' ? '#fff' : 'rgba(255,255,255,0.35)',
+                background: currency === 'INR' ? 'var(--card-border)' : 'transparent',
+                color: currency === 'INR' ? 'var(--text-heading)' : 'var(--text-subtle)',
               }}
             >
               <IndianRupee size={11} /> INR
@@ -146,16 +146,17 @@ export default function Pricing() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-white/45 text-sm font-mono mb-12 max-w-lg"
+          className="text-sm font-mono mb-12 max-w-lg"
+          style={{ color: 'var(--text-muted)' }}
         >
           Fixed-price or milestone-based. Written estimate within 48 hours. No surprise charges.
           {detected === 'INR' && currency === 'USD' && (
-            <span className="block mt-1 text-white/25 text-[11px]">
+            <span className="block mt-1 text-[11px]" style={{ color: 'var(--text-subtle)' }}>
               Showing USD · <button onClick={() => setCurrency('INR')} className="text-[#818CF8] hover:underline">Switch to ₹ INR</button>
             </span>
           )}
           {detected === 'USD' && currency === 'INR' && (
-            <span className="block mt-1 text-white/25 text-[11px]">
+            <span className="block mt-1 text-[11px]" style={{ color: 'var(--text-subtle)' }}>
               Showing INR · <button onClick={() => setCurrency('USD')} className="text-[#22D3EE] hover:underline">Switch to $ USD</button>
             </span>
           )}
@@ -174,8 +175,9 @@ export default function Pricing() {
                 transition={{ duration: 0.55, delay: i * 0.1, ease: [0.25, 0.1, 0.25, 1] }}
                 className="relative rounded-2xl p-7 flex flex-col"
                 style={{
-                  background: plan.featured ? `${plan.color}08` : 'rgba(255,255,255,0.03)',
-                  border: plan.featured ? `1px solid ${plan.color}35` : '1px solid rgba(255,255,255,0.07)',
+                  background: plan.featured ? `${plan.color}08` : 'var(--card-bg)',
+                  border: plan.featured ? `1px solid ${plan.color}35` : '1px solid var(--card-border)',
+                  boxShadow: plan.featured ? undefined : 'var(--card-shadow)',
                 }}
               >
                 {/* Top accent */}
@@ -192,7 +194,7 @@ export default function Pricing() {
                 )}
 
                 <div className="mb-5">
-                  <div className="text-white/35 text-xs font-mono uppercase tracking-widest mb-2">{plan.name}</div>
+                  <div className="text-xs font-mono uppercase tracking-widest mb-2" style={{ color: 'var(--text-muted)' }}>{plan.name}</div>
                   <div className="flex items-end gap-1">
                     <AnimatePresence mode="wait">
                       <motion.span
@@ -201,8 +203,8 @@ export default function Pricing() {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 8 }}
                         transition={{ duration: 0.2 }}
-                        className="font-display font-black text-white"
-                        style={{ fontSize: '2rem' }}
+                        className="font-display font-black"
+                        style={{ fontSize: '2rem', color: 'var(--text-heading)' }}
                       >
                         {pricing.price}
                       </motion.span>
@@ -214,22 +216,31 @@ export default function Pricing() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="text-white/40 font-mono text-sm pb-1"
+                        className="font-mono text-sm pb-1"
+                        style={{ color: 'var(--text-muted)' }}
                       >
                         {pricing.suffix}
                       </motion.span>
                     </AnimatePresence>
                   </div>
-                  <div className="text-white/35 text-xs font-mono mt-1">Timeline: {plan.timeline}</div>
+                  <div className="text-xs font-mono mt-1 inline-flex items-center gap-1.5 px-2 py-0.5 rounded"
+                    style={{ color: 'var(--text-subtle)', background: 'var(--badge-bg)', border: '1px solid var(--badge-border)' }}>
+                    Timeline: {plan.timeline}
+                  </div>
                 </div>
 
-                <p className="text-white/55 text-sm leading-relaxed mb-6">{plan.description}</p>
+                <p className="text-sm leading-relaxed mb-6" style={{ color: 'var(--text-body)' }}>{plan.description}</p>
 
                 <ul className="space-y-2.5 flex-1 mb-7">
                   {plan.features.map((f, j) => (
-                    <li key={j} className="flex items-start gap-2.5 text-sm text-white/70">
-                      <Check size={13} className="mt-0.5 shrink-0" style={{ color: plan.color }} />
-                      {f}
+                    <li key={j}>
+                      <div className="flex items-start gap-2.5 text-sm" style={{ color: 'var(--text-body)' }}>
+                        <Check size={13} className="mt-0.5 shrink-0" style={{ color: plan.color }} />
+                        {f}
+                      </div>
+                      {j < plan.features.length - 1 && (
+                        <div className="mt-2.5 h-px" style={{ background: 'var(--divider)' }} />
+                      )}
                     </li>
                   ))}
                 </ul>
@@ -240,7 +251,7 @@ export default function Pricing() {
                   className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm transition-all duration-200"
                   style={plan.featured
                     ? { background: `linear-gradient(135deg, ${plan.color} 0%, #A855F7 100%)`, color: '#ffffff' }
-                    : { background: 'rgba(255,255,255,0.05)', color: '#818CF8', border: '1px solid rgba(99,102,241,0.2)' }
+                    : { background: 'var(--badge-bg)', color: '#818CF8', border: '1px solid var(--badge-border)' }
                   }
                 >
                   {plan.cta} <ArrowRight size={13} />
@@ -257,10 +268,10 @@ export default function Pricing() {
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
           className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 px-6 py-4 rounded-2xl"
-          style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(99,102,241,0.1)' }}
+          style={{ background: 'var(--badge-bg)', border: '1px solid rgba(99,102,241,0.1)' }}
         >
-          <p className="text-white/45 text-sm text-center sm:text-left">
-            Not sure which fits? I provide a <span className="text-white/80 font-medium">free 30-minute scoping call</span> — no commitment required.
+          <p className="text-sm text-center sm:text-left" style={{ color: 'var(--text-body)' }}>
+            Not sure which fits? I provide a <span className="font-medium" style={{ color: 'var(--text-heading)' }}>free 30-minute scoping call</span> — no commitment required.
           </p>
           <motion.button
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
