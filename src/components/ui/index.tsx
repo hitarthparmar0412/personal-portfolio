@@ -27,10 +27,10 @@ export const springScale = {
 
 // ─── Design tokens ────────────────────────────────────────────────────────────
 
-export const GOLD = '#E8B554'
-export const BLUE = '#4285F4'
-export const BG_DARK = '#05080F'
-export const BG_DARKER = '#0D1117'
+export const GOLD = '#6366F1'
+export const BLUE = '#06B6D4'
+export const BG_DARK = '#050714'
+export const BG_DARKER = '#09091F'
 
 // ─── Section wrapper ──────────────────────────────────────────────────────────
 
@@ -42,7 +42,7 @@ interface SectionProps {
 
 export function Section({ id, className = '', children }: SectionProps) {
   return (
-    <section id={id} className={`py-24 lg:pl-16 ${className}`}>
+    <section id={id} className={`py-24 ${className}`}>
       {children}
     </section>
   )
@@ -57,7 +57,7 @@ interface SectionHeadingProps {
   className?: string
 }
 
-export function SectionHeading({ label, title, subtitle, className = 'mb-16' }: SectionHeadingProps) {
+export function SectionHeading({ label, title, subtitle, className = 'mb-10' }: SectionHeadingProps) {
   return (
     <div className={className}>
       <motion.div
@@ -65,16 +65,17 @@ export function SectionHeading({ label, title, subtitle, className = 'mb-16' }: 
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="flex items-center gap-3 mb-3"
+        className="inline-flex items-center gap-2 px-3 py-1 rounded-full mb-0.5"
+        style={{ background: 'rgba(99,102,241,0.08)', border: '1px solid rgba(99,102,241,0.2)' }}
       >
-        <div className="h-px w-6 bg-[#E8B554]" />
-        <span className="text-[#E8B554] text-xs font-mono tracking-[0.2em] uppercase">{label}</span>
+        <div className="w-1.5 h-1.5 rounded-full" style={{ background: 'linear-gradient(135deg, #818CF8, #22D3EE)' }} />
+        <span className="text-[#818CF8] text-[10px] font-mono tracking-[0.25em] uppercase">{label}</span>
       </motion.div>
       <SplitText
         text={title}
         tag="h2"
-        className="font-display font-black text-white leading-[0.95] tracking-tight"
-        style={{ fontSize: 'clamp(2.4rem, 5vw, 4.2rem)' }}
+        className="heading-gradient font-display font-black leading-none tracking-tight mb-1"
+        style={{ fontSize: 'clamp(1.5rem, 2.8vw, 2.5rem)' }}
         delay={0.05}
       />
       {subtitle && (
@@ -83,7 +84,7 @@ export function SectionHeading({ label, title, subtitle, className = 'mb-16' }: 
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.25 }}
-          className="text-white/45 mt-4 max-w-2xl text-[15px] leading-relaxed"
+          className="text-white/40 mt-1 max-w-2xl text-[15px] leading-relaxed"
         >
           {subtitle}
         </motion.p>
@@ -121,12 +122,12 @@ export function GlassCard({ children, className = '', hover = true, style }: Gla
 type TagVariant = 'blue' | 'gold' | 'purple' | 'green' | 'red' | 'mono'
 
 const TAG_STYLES: Record<TagVariant, string> = {
-  blue:   'bg-blue-500/10 border-blue-500/20 text-blue-400',
-  gold:   'bg-[#E8B554]/10 border-[#E8B554]/20 text-[#E8B554]',
-  purple: 'bg-purple-500/10 border-purple-500/20 text-purple-400',
-  green:  'bg-green-500/10 border-green-500/20 text-green-400',
-  red:    'bg-red-500/10 border-red-500/20 text-red-400',
-  mono:   'bg-white/5 border-white/10 text-gray-300',
+  blue:   'bg-cyan-500/10 border-cyan-500/20 text-cyan-600',
+  gold:   'bg-indigo-500/10 border-indigo-500/20 text-indigo-600',
+  purple: 'bg-purple-500/10 border-purple-500/20 text-purple-600',
+  green:  'bg-emerald-500/10 border-emerald-500/20 text-emerald-600',
+  red:    'bg-rose-500/10 border-rose-500/20 text-rose-600',
+  mono:   'bg-white/5 border-white/10 text-white/50',
 }
 
 interface TagProps {
@@ -158,9 +159,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export function Button({ variant = 'primary', children, className = '', ...props }: ButtonProps) {
   const base = 'inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-150 cursor-pointer'
   const variants: Record<ButtonVariant, string> = {
-    primary:   'bg-gradient-to-r from-[#E8B554] to-[#F5A623] text-[#05080F] hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(232,181,84,0.3)]',
-    secondary: 'border border-[#E8B554]/50 text-[#E8B554] hover:bg-[#E8B554]/10 backdrop-blur-sm',
-    ghost:     'text-gray-400 hover:text-white hover:bg-white/5',
+    primary:   'bg-gradient-to-r from-[#6366F1] to-[#A855F7] text-white hover:-translate-y-0.5 hover:shadow-[0_8px_32px_rgba(99,102,241,0.35)]',
+    secondary: 'border border-[#6366F1]/40 text-[#6366F1] hover:bg-[#6366F1]/10 backdrop-blur-sm',
+    ghost:     'text-[#6B7280] hover:text-[#374151] hover:bg-black/5',
   }
   return (
     <button className={`${base} ${variants[variant]} ${className}`} {...props}>

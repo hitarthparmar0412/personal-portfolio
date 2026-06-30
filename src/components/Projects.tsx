@@ -7,14 +7,17 @@ import Link from 'next/link'
 import { projects } from '@/lib/data'
 import { SectionHeading } from '@/components/ui'
 
-const filters = ['All', 'Delivery & Logistics', 'Fintech', 'AI', 'Health & Lifestyle', 'EdTech', 'Marketplace', 'Mobility Platform', 'B2B Marketplace']
+const filters = ['All', 'AI', 'Fintech', 'Delivery', 'Marketplace']
 
 const projectLogos: Record<string, string> = {
-  'deonde':          '/projects/deonde-logo-hq.png',
+  'deonde':          '/projects/deonde-logo.svg',
   'chowman':         '/projects/chowman-logo-hq.png',
-  'times-of-my-life':'/projects/times-logo-hq.png',
-  'juiced-fuel':     '/projects/juiced-logo-hq.png',
-  'oklends':         '/projects/oklends-logo.png',
+  'times-of-my-life':'/projects/times-logo-navbar.png',
+  'juiced-fuel':     '/projects/juiced-logo-hq.webp',
+  'oklends':         '/projects/oklends-icon.png',
+  'astrolearn':      '/projects/astrolearn-logo.png',
+  'zebrapad':        '/projects/zebrapad-logo.png',
+  'busineswise':     '/projects/busineswise-logo.png',
 }
 
 function PlatformBadge({ platform }: { platform: string }) {
@@ -26,7 +29,7 @@ function PlatformBadge({ platform }: { platform: string }) {
   return (
     <span
       className="inline-flex items-center gap-1 text-[10px] px-2 py-1 rounded-md font-mono"
-      style={{ background: 'rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)', border: '1px solid rgba(255,255,255,0.08)' }}
+      style={{ background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.4)', border: '1px solid rgba(255,255,255,0.08)' }}
     >
       {icons[platform]}
       {platform}
@@ -46,14 +49,15 @@ function ProjectCard({ project, large = false }: { project: typeof projects[0]; 
       className="rounded-2xl overflow-hidden transition-all duration-300 flex flex-col h-full group"
       style={{
         background: 'rgba(255,255,255,0.03)',
-        border: '1px solid rgba(255,255,255,0.08)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        
       }}
     >
       {/* Preview banner */}
       <div
         className="relative h-36 flex items-center justify-center overflow-hidden shrink-0"
         style={{
-          background: `linear-gradient(135deg, ${project.color}22 0%, ${project.color}08 60%, rgba(5,8,15,0.8) 100%)`,
+          background: `linear-gradient(135deg, ${project.color}22 0%, ${project.color}08 60%, rgba(5,7,20,0.7) 100%)`,
           borderBottom: `1px solid ${project.color}18`,
         }}
       >
@@ -69,7 +73,7 @@ function ProjectCard({ project, large = false }: { project: typeof projects[0]; 
             src={logo}
             alt={project.name}
             className="relative z-10 object-contain transition-transform duration-300 group-hover:scale-105"
-            style={{ maxHeight: '72px', maxWidth: '160px', filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.5))' }}
+            style={{ maxHeight: '72px', maxWidth: '160px', filter: 'drop-shadow(0 4px 16px rgba(0,0,0,0.2))' }}
           />
         ) : (
           <div
@@ -87,7 +91,7 @@ function ProjectCard({ project, large = false }: { project: typeof projects[0]; 
         {project.isAI && (
           <div
             className="absolute top-3 right-3 text-[10px] font-mono px-2 py-1 rounded-full"
-            style={{ background: 'rgba(236,72,153,0.2)', color: '#EC4899', border: '1px solid rgba(236,72,153,0.3)' }}
+            style={{ background: 'rgba(244,114,182,0.2)', color: '#F472B6', border: '1px solid rgba(244,114,182,0.3)' }}
           >
             ✦ AI
           </div>
@@ -132,7 +136,7 @@ function ProjectCard({ project, large = false }: { project: typeof projects[0]; 
           <span
             key={t}
             className="text-[11px] px-2.5 py-1 rounded-lg font-mono"
-            style={{ background: 'rgba(66,133,244,0.1)', color: 'rgba(66,133,244,0.8)', border: '1px solid rgba(66,133,244,0.2)' }}
+            style={{ background: 'rgba(34,211,238,0.08)', color: '#22D3EE', border: '1px solid rgba(34,211,238,0.2)' }}
           >
             {t}
           </span>
@@ -152,9 +156,9 @@ function ProjectCard({ project, large = false }: { project: typeof projects[0]; 
             href={`/projects/${project.id}`}
             className="flex items-center gap-1 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all duration-200 hover:opacity-80"
             style={{
-              color: 'rgba(255,255,255,0.55)',
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.1)',
+              color: '#6B7280',
+              background: 'rgba(255,255,255,0.04)',
+              border: '1px solid rgba(255,255,255,0.07)',
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -189,14 +193,15 @@ export default function Projects() {
   const [activeFilter, setActiveFilter] = useState('All')
 
   const featuredProjects = projects.filter(p => p.isFeatured)
-  const filtered = projects.filter(p => {
-    if (activeFilter === 'All') return !p.isFeatured
-    if (activeFilter === 'AI') return p.isAI && !p.isFeatured
-    return p.category.toLowerCase().includes(activeFilter.toLowerCase()) && !p.isFeatured
-  })
+  const filtered = activeFilter === 'All'
+    ? projects.filter(p => !p.isFeatured)
+    : projects.filter(p => {
+        if (activeFilter === 'AI') return p.isAI
+        return p.category.toLowerCase().includes(activeFilter.toLowerCase())
+      })
 
   return (
-    <section id="projects" className="py-24 bg-[#05080F] lg:pl-16">
+    <section id="projects" className="py-24 bg-[#050714]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeading
           label="Portfolio"
@@ -205,24 +210,26 @@ export default function Projects() {
           className="mb-12"
         />
 
-        {/* Featured row */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="mb-8"
-        >
-          <div className="flex items-center gap-2 mb-5">
-            <div className="w-1.5 h-1.5 rounded-full bg-[#E8B554] animate-pulse" />
-            <span className="text-[#E8B554] text-xs font-mono tracking-widest uppercase">Featured</span>
-          </div>
-          <div className="grid md:grid-cols-2 gap-5">
-            {featuredProjects.map((project) => (
-              <ProjectCard key={project.id} project={project} large />
-            ))}
-          </div>
-        </motion.div>
+        {/* Featured row — only show on 'All' filter */}
+        {activeFilter === 'All' && (
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-8"
+          >
+            <div className="flex items-center gap-2 mb-5">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#818CF8] animate-pulse" />
+              <span className="text-[#818CF8] text-xs font-mono tracking-widest uppercase">Featured</span>
+            </div>
+            <div className="grid md:grid-cols-2 gap-5">
+              {featuredProjects.map((project) => (
+                <ProjectCard key={project.id} project={project} large />
+              ))}
+            </div>
+          </motion.div>
+        )}
 
         {/* Filter tabs */}
         <motion.div
@@ -237,9 +244,9 @@ export default function Projects() {
               onClick={() => setActiveFilter(filter)}
               className="px-4 py-2 rounded-xl text-xs font-mono font-medium transition-all duration-200"
               style={{
-                background: activeFilter === filter ? 'rgba(232,181,84,0.15)' : 'rgba(255,255,255,0.04)',
-                color: activeFilter === filter ? '#E8B554' : 'rgba(255,255,255,0.5)',
-                border: activeFilter === filter ? '1px solid rgba(232,181,84,0.3)' : '1px solid rgba(255,255,255,0.07)',
+                background: activeFilter === filter ? 'rgba(99,102,241,0.15)' : 'rgba(255,255,255,0.04)',
+                color: activeFilter === filter ? '#818CF8' : 'rgba(255,255,255,0.45)',
+                border: activeFilter === filter ? '1px solid rgba(99,102,241,0.3)' : '1px solid rgba(255,255,255,0.08)',
               }}
             >
               {filter}
@@ -260,7 +267,7 @@ export default function Projects() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-16 text-white/30 font-mono"
+            className="text-center py-16 text-white/35 font-mono"
           >
             No projects in this category yet.
           </motion.div>

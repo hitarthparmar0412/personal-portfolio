@@ -6,7 +6,7 @@ import { SectionHeading } from '@/components/ui'
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 bg-[#05080F] lg:pl-16">
+    <section id="services" className="py-24 bg-[#050714]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeading
           label="What I Offer"
@@ -39,7 +39,7 @@ export default function Services() {
                 {service.icon}
               </motion.div>
 
-              <h3 className="font-display font-bold text-white text-lg mb-3 group-hover:text-[#E8B554] transition-colors duration-300">
+              <h3 className="font-display font-bold text-white text-lg mb-3 group-hover:text-[#818CF8] transition-colors duration-300">
                 {service.title}
               </h3>
               <p className="text-white/55 text-sm leading-relaxed">
@@ -68,8 +68,8 @@ export default function Services() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-8 py-4 rounded-2xl text-[#05080F] font-bold text-sm"
-            style={{ background: 'linear-gradient(135deg, #E8B554 0%, #F5A623 100%)', boxShadow: '0 8px 32px rgba(232,181,84,0.25)' }}
+            className="px-8 py-4 rounded-2xl text-white font-bold text-sm"
+            style={{ background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 100%)', boxShadow: '0 8px 32px rgba(99,102,241,0.35)' }}
           >
             Get In Touch →
           </motion.button>

@@ -54,12 +54,12 @@ export default function Navigation() {
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
         className="fixed left-0 top-0 h-full w-16 z-50 hidden lg:flex flex-col items-center justify-center py-8 gap-1"
-        style={{ background: 'rgba(5,8,15,0.85)', backdropFilter: 'blur(20px)', borderRight: '1px solid rgba(255,255,255,0.05)' }}
+        style={{ background: 'rgba(5,7,20,0.85)', backdropFilter: 'blur(20px)', borderRight: '1px solid rgba(99,102,241,0.1)' }}
       >
         {/* Logo mark */}
         <div className="absolute top-6 left-0 w-full flex justify-center">
-          <div className="w-8 h-8 rounded-lg flex items-center justify-center text-[#05080F] font-bold text-sm font-mono"
-            style={{ background: 'linear-gradient(135deg, #E8B554 0%, #F5A623 100%)' }}>
+          <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm font-mono"
+            style={{ background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 100%)' }}>
             HP
           </div>
         </div>
@@ -73,26 +73,26 @@ export default function Navigation() {
               title={link.label}
               className="relative group w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300"
               style={{
-                background: active === link.id ? 'rgba(232,181,84,0.15)' : 'transparent',
-                border: active === link.id ? '1px solid rgba(232,181,84,0.3)' : '1px solid transparent',
+                background: active === link.id ? 'rgba(99,102,241,0.15)' : 'transparent',
+                border: active === link.id ? '1px solid rgba(99,102,241,0.3)' : '1px solid transparent',
               }}
             >
               <span
                 className="text-sm transition-colors duration-300"
-                style={{ color: active === link.id ? '#E8B554' : 'rgba(255,255,255,0.4)' }}
+                style={{ color: active === link.id ? '#6366F1' : 'rgba(255,255,255,0.4)' }}
               >
                 {link.icon}
               </span>
               {/* Tooltip */}
-              <span className="absolute left-14 bg-[#0D1117] text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none"
-                style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
+              <span className="absolute left-14 bg-[#09091F] text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 whitespace-nowrap pointer-events-none"
+                style={{ border: '1px solid rgba(99,102,241,0.2)', boxShadow: '0 4px 12px rgba(0,0,0,0.3)' }}>
                 {link.label}
               </span>
               {active === link.id && (
                 <motion.div
                   layoutId="activeIndicator"
                   className="absolute right-0 w-0.5 h-5 rounded-full"
-                  style={{ background: '#E8B554' }}
+                  style={{ background: '#6366F1' }}
                 />
               )}
             </button>
@@ -108,11 +108,11 @@ export default function Navigation() {
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className={`fixed top-0 left-0 right-0 z-50 lg:hidden flex items-center justify-between px-5 py-4 transition-all duration-300 ${scrolled ? 'shadow-lg' : ''}`}
-        style={{ background: scrolled ? 'rgba(5,8,15,0.95)' : 'transparent', backdropFilter: 'blur(20px)', borderBottom: scrolled ? '1px solid rgba(255,255,255,0.06)' : 'none' }}
+        className={`fixed top-0 left-0 right-0 z-50 lg:hidden flex items-center justify-between px-5 py-4 transition-all duration-300 ${scrolled ? 'shadow-md' : ''}`}
+        style={{ background: scrolled ? 'rgba(5,7,20,0.95)' : 'transparent', backdropFilter: 'blur(20px)', borderBottom: scrolled ? '1px solid rgba(99,102,241,0.1)' : 'none' }}
       >
-        <div className="w-8 h-8 rounded-lg flex items-center justify-center text-[#05080F] font-bold text-sm font-mono"
-          style={{ background: 'linear-gradient(135deg, #E8B554 0%, #F5A623 100%)' }}>
+        <div className="w-8 h-8 rounded-lg flex items-center justify-center text-white font-bold text-sm font-mono"
+          style={{ background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 100%)' }}>
           HP
         </div>
         <button
@@ -142,12 +142,12 @@ export default function Navigation() {
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 30, stiffness: 300 }}
               className="fixed right-0 top-0 h-full w-72 z-50 lg:hidden flex flex-col py-8 px-6"
-              style={{ background: '#0D1117', borderLeft: '1px solid rgba(255,255,255,0.08)' }}
+              style={{ background: '#09091F', borderLeft: '1px solid rgba(99,102,241,0.15)', boxShadow: '-8px 0 40px rgba(0,0,0,0.5)' }}
             >
               <div className="flex items-center justify-between mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-lg flex items-center justify-center text-[#05080F] font-bold font-mono"
-                    style={{ background: 'linear-gradient(135deg, #E8B554 0%, #F5A623 100%)' }}>
+                  <div className="w-9 h-9 rounded-lg flex items-center justify-center text-white font-bold font-mono"
+                    style={{ background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 100%)' }}>
                     HP
                   </div>
                   <span className="text-white font-semibold font-display">Hitarth Parmar</span>
@@ -171,22 +171,22 @@ export default function Navigation() {
                     onClick={() => scrollTo(link.id)}
                     className="flex items-center gap-3 px-4 py-3 rounded-xl text-left transition-all duration-200"
                     style={{
-                      background: active === link.id ? 'rgba(232,181,84,0.12)' : 'transparent',
-                      border: active === link.id ? '1px solid rgba(232,181,84,0.25)' : '1px solid transparent',
+                      background: active === link.id ? 'rgba(99,102,241,0.15)' : 'transparent',
+                      border: active === link.id ? '1px solid rgba(99,102,241,0.2)' : '1px solid transparent',
                     }}
                   >
-                    <span className="text-base" style={{ color: active === link.id ? '#E8B554' : 'rgba(255,255,255,0.4)' }}>{link.icon}</span>
-                    <span className="text-sm font-medium" style={{ color: active === link.id ? '#E8B554' : 'rgba(255,255,255,0.75)' }}>
+                    <span className="text-base" style={{ color: active === link.id ? '#6366F1' : 'rgba(255,255,255,0.4)' }}>{link.icon}</span>
+                    <span className="text-sm font-medium" style={{ color: active === link.id ? '#6366F1' : '#374151' }}>
                       {link.label}
                     </span>
                   </motion.button>
                 ))}
               </div>
 
-              <div className="mt-auto pt-6 border-t border-white/5">
+              <div className="mt-auto pt-6 border-t border-black/5">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-xs text-white/40">Open to Opportunities</span>
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  <span className="text-xs text-[#9CA3AF]">Open to Opportunities</span>
                 </div>
               </div>
             </motion.div>

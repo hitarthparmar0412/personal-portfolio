@@ -19,19 +19,29 @@ export function generateMetadata({
 }): Metadata {
   const project = projects.find((p) => p.id === params.id)
   if (!project) return {}
+  const detail = projectDetails[project.id]
+  const description = `${project.description} Built by Hitarth Parmar — Senior Flutter Developer, Ahmedabad.`
+  const url = `https://hitarthparmar.dev/projects/${project.id}`
   return {
-    title: `${project.name} — Hitarth Parmar`,
-    description: project.description,
+    title: `${project.name} — Hitarth Parmar | Flutter Developer`,
+    description,
+    alternates: { canonical: url },
     openGraph: {
       title: `${project.name} — Hitarth Parmar`,
-      description: project.description,
+      description,
       type: 'website',
+      url,
+      siteName: 'Hitarth Parmar Portfolio',
+      images: [{ url: '/og-image.jpg', width: 1200, height: 630 }],
     },
     twitter: {
-      card: 'summary',
+      card: 'summary_large_image',
       title: `${project.name} — Hitarth Parmar`,
-      description: project.description,
+      description,
+      images: ['/og-image.jpg'],
     },
+    keywords: [project.name, ...project.tech, 'Flutter', 'Hitarth Parmar', project.category],
+    authors: [{ name: 'Hitarth Parmar' }],
   }
 }
 
@@ -49,9 +59,9 @@ function PlatformBadge({ platform }: { platform: string }) {
     <span
       className="inline-flex items-center gap-1.5 text-xs px-3 py-1.5 rounded-full font-mono font-medium"
       style={{
-        background: 'rgba(255,255,255,0.07)',
-        color: 'rgba(255,255,255,0.65)',
-        border: '1px solid rgba(255,255,255,0.1)',
+        background: 'rgba(0,0,0,0.05)',
+        color: '#6B7280',
+        border: '1px solid rgba(0,0,0,0.1)',
       }}
     >
       {icons[platform]}
@@ -65,9 +75,9 @@ function TechPill({ label }: { label: string }) {
     <span
       className="text-[12px] px-3 py-1.5 rounded-lg font-mono font-medium"
       style={{
-        background: 'rgba(66,133,244,0.1)',
-        color: 'rgba(66,133,244,0.85)',
-        border: '1px solid rgba(66,133,244,0.22)',
+        background: 'rgba(6,182,212,0.08)',
+        color: '#0891B2',
+        border: '1px solid rgba(6,182,212,0.18)',
       }}
     >
       {label}
@@ -78,11 +88,11 @@ function TechPill({ label }: { label: string }) {
 function SectionLabel({ icon, label }: { icon: React.ReactNode; label: string }) {
   return (
     <div className="flex items-center gap-2.5 mb-6">
-      <span className="text-[#E8B554]">{icon}</span>
-      <span className="text-[#E8B554] text-xs font-mono tracking-widest uppercase font-semibold">
+      <span className="text-[#6366F1]">{icon}</span>
+      <span className="text-[#6366F1] text-xs font-mono tracking-widest uppercase font-semibold">
         {label}
       </span>
-      <div className="flex-1 h-px" style={{ background: 'rgba(232,181,84,0.15)' }} />
+      <div className="flex-1 h-px" style={{ background: 'rgba(99,102,241,0.15)' }} />
     </div>
   )
 }
@@ -97,21 +107,45 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
   const detail = projectDetails[project.id]
 
+  const operatingSystem = project.platforms
+    .map((p) => (p === 'iOS' ? 'iOS' : p === 'Android' ? 'Android' : 'Web'))
+    .join(', ')
+
+  const appSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'SoftwareApplication',
+    name: project.name,
+    description: project.description,
+    applicationCategory: 'MobileApplication',
+    operatingSystem,
+    author: {
+      '@type': 'Person',
+      name: 'Hitarth Parmar',
+      url: 'https://hitarthparmar.dev',
+    },
+    ...(project.link !== '#' ? { url: project.link } : {}),
+    ...(detail ? { datePublished: detail.year.split('–')[0].trim() } : {}),
+  }
+
   return (
-    <main className="min-h-screen bg-[#05080F]">
+    <main className="min-h-screen bg-[#050714]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(appSchema) }}
+      />
       {/* ------------------------------------------------------------------ */}
       {/* Hero */}
       {/* ------------------------------------------------------------------ */}
       <div
         className="relative overflow-hidden"
         style={{
-          background: `linear-gradient(135deg, ${project.color}14 0%, #05080F 55%, #05080F 100%)`,
-          borderBottom: '1px solid rgba(255,255,255,0.06)',
+          background: `linear-gradient(135deg, ${project.color}10 0%, #FAFBFF 55%, #FAFBFF 100%)`,
+          borderBottom: '1px solid rgba(0,0,0,0.07)',
         }}
       >
         {/* Radial glow behind the title */}
         <div
-          className="pointer-events-none absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-20"
+          className="pointer-events-none absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full opacity-[0.12]"
           style={{
             background: `radial-gradient(circle, ${project.color} 0%, transparent 70%)`,
           }}
@@ -121,7 +155,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           {/* Back navigation */}
           <Link
             href="/#projects"
-            className="inline-flex items-center gap-2 text-sm font-mono text-white/40 hover:text-[#E8B554] transition-colors duration-200 mb-10 group"
+            className="inline-flex items-center gap-2 text-sm font-mono text-[#9CA3AF] hover:text-[#6366F1] transition-colors duration-200 mb-10 group"
           >
             <ArrowLeft
               size={14}
@@ -166,7 +200,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
 
             {/* Year */}
             {detail && (
-              <span className="text-[11px] font-mono text-white/30 ml-auto">
+              <span className="text-[11px] font-mono text-[#9CA3AF] ml-auto">
                 {detail.year}
               </span>
             )}
@@ -178,13 +212,13 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           </h1>
 
           {/* Category */}
-          <p className="text-[#E8B554] font-mono text-sm tracking-wider mb-6">
+          <p className="text-[#6366F1] font-mono text-sm tracking-wider mb-6">
             {project.category}
             {detail && ` · ${detail.role}`}
           </p>
 
           {/* Description */}
-          <p className="text-white/60 text-[16px] leading-relaxed max-w-2xl">
+          <p className="text-[#374151] text-[16px] leading-relaxed max-w-2xl">
             {project.description}
           </p>
 
@@ -197,9 +231,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90 active:scale-95"
                 style={{
-                  background: 'linear-gradient(135deg, #E8B554 0%, #F5A623 100%)',
-                  color: '#05080F',
-                  boxShadow: '0 0 24px rgba(232,181,84,0.25)',
+                  background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 100%)',
+                  color: '#ffffff',
+                  boxShadow: '0 0 24px rgba(99,102,241,0.25)',
                 }}
               >
                 View Live App
@@ -210,9 +244,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               href="/#projects"
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200"
               style={{
-                background: 'rgba(255,255,255,0.05)',
-                color: 'rgba(255,255,255,0.6)',
-                border: '1px solid rgba(255,255,255,0.1)',
+                background: 'rgba(0,0,0,0.04)',
+                color: '#6B7280',
+                border: '1px solid rgba(0,0,0,0.08)',
               }}
             >
               <ArrowLeft size={14} />
@@ -245,7 +279,8 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               {detail.features.map((feature, i) => (
                 <div
                   key={i}
-                  className="glass rounded-xl p-4 flex gap-3 items-start group transition-all duration-300"
+                  className="rounded-xl p-4 flex gap-3 items-start group transition-all duration-300"
+                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
                 >
                   <span
                     className="mt-0.5 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-mono font-bold"
@@ -257,7 +292,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <p className="text-white/65 text-sm leading-relaxed">{feature}</p>
+                  <p className="text-[#374151] text-sm leading-relaxed">{feature}</p>
                 </div>
               ))}
             </div>
@@ -272,16 +307,16 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               {detail.challenges.map((challenge, i) => (
                 <div
                   key={i}
-                  className="glass rounded-xl p-5 flex gap-4 items-start"
-                  style={{ borderLeft: `3px solid ${project.color}60` }}
+                  className="rounded-xl p-5 flex gap-4 items-start"
+                  style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderLeft: `3px solid ${project.color}50`, }}
                 >
                   <span
                     className="flex-shrink-0 font-display font-bold text-2xl leading-none"
-                    style={{ color: `${project.color}40` }}
+                    style={{ color: `${project.color}50` }}
                   >
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <p className="text-white/60 text-[15px] leading-relaxed">{challenge}</p>
+                  <p className="text-[#374151] text-[15px] leading-relaxed">{challenge}</p>
                 </div>
               ))}
             </div>
@@ -293,13 +328,14 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           <section>
             <SectionLabel icon={<Trophy size={14} />} label="Outcome" />
             <div
-              className="glass rounded-2xl p-7"
+              className="rounded-2xl p-7"
               style={{
-                background: `linear-gradient(135deg, ${project.color}0C 0%, rgba(255,255,255,0.03) 100%)`,
-                borderColor: `${project.color}25`,
+                background: `linear-gradient(135deg, ${project.color}06 0%, #FFFFFF 100%)`,
+                border: `1px solid ${project.color}20`,
+                boxShadow: '0 4px 24px rgba(0,0,0,0.05)',
               }}
             >
-              <p className="text-white/75 text-[16px] leading-relaxed">{detail.outcome}</p>
+              <p className="text-[#374151] text-[16px] leading-relaxed">{detail.outcome}</p>
             </div>
           </section>
         )}
@@ -309,14 +345,15 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
           className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 rounded-2xl p-7"
           style={{
             background: 'rgba(255,255,255,0.03)',
-            border: '1px solid rgba(255,255,255,0.07)',
+            border: '1px solid rgba(0,0,0,0.08)',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.06)',
           }}
         >
           <div>
             <p className="text-white font-display font-semibold text-lg mb-1">
               Interested in working together?
             </p>
-            <p className="text-white/40 text-sm font-mono">
+            <p className="text-[#6B7280] text-sm font-mono">
               I&apos;m open to new projects — let&apos;s build something great.
             </p>
           </div>
@@ -328,8 +365,8 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 hover:opacity-90"
                 style={{
-                  background: 'linear-gradient(135deg, #E8B554 0%, #F5A623 100%)',
-                  color: '#05080F',
+                  background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 100%)',
+                  color: '#ffffff',
                 }}
               >
                 Live App <ExternalLink size={12} />
@@ -339,9 +376,9 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
               href="/#contact"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200"
               style={{
-                background: 'rgba(232,181,84,0.08)',
-                color: '#E8B554',
-                border: '1px solid rgba(232,181,84,0.2)',
+                background: 'rgba(99,102,241,0.08)',
+                color: '#6366F1',
+                border: '1px solid rgba(99,102,241,0.2)',
               }}
             >
               Contact Me

@@ -49,7 +49,7 @@ function AnimatedCounter({ value, suffix, dynamic = false, duration = 2 }: Anima
   const displayValue = Number.isInteger(value) ? count.toLocaleString() : count.toFixed(1)
 
   return (
-    <div ref={ref} className="font-display font-black leading-none" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: '#E8B554' }}>
+    <div ref={ref} className="font-display font-black leading-none" style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: '#6366F1' }}>
       {displayValue}{suffix}
     </div>
   )
@@ -57,7 +57,7 @@ function AnimatedCounter({ value, suffix, dynamic = false, duration = 2 }: Anima
 
 export default function Stats() {
   return (
-    <section className="py-16 lg:pl-16" style={{ background: '#0D1117', borderTop: '1px solid rgba(255,255,255,0.04)', borderBottom: '1px solid rgba(255,255,255,0.04)' }}>
+    <section className="py-16" style={{ background: '#09091F', borderTop: '1px solid rgba(99,102,241,0.08)', borderBottom: '1px solid rgba(99,102,241,0.08)' }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {stats.map((stat, i) => (
@@ -67,11 +67,12 @@ export default function Stats() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="glass rounded-2xl p-6 text-center transition-all duration-300 group"
+              className="rounded-2xl p-6 text-center transition-all duration-300 group"
+              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(99,102,241,0.1)' }}
             >
               <AnimatedCounter value={stat.value} suffix={stat.suffix} dynamic={stat.dynamic} />
-              <div className="text-white font-semibold mt-2 text-sm md:text-base">{stat.label}</div>
-              <div className="text-white/40 text-xs mt-1 font-mono">{stat.sublabel}</div>
+              <div className="text-white/80 font-semibold mt-2 text-sm md:text-base">{stat.label}</div>
+              <div className="text-white/35 text-xs mt-1 font-mono">{stat.sublabel}</div>
             </motion.div>
           ))}
         </div>

@@ -16,11 +16,11 @@ declare global {
 }
 
 const contactItems = [
-  { icon: <Mail size={16} />, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}`, color: '#E8B554' },
-  { icon: <Phone size={16} />, label: 'Phone', value: personalInfo.phone, href: `tel:${personalInfo.phone}`, color: '#4285F4' },
-  { icon: <MapPin size={16} />, label: 'Location', value: personalInfo.location, href: '#', color: '#8B5CF6' },
-  { icon: <Linkedin size={16} />, label: 'LinkedIn', value: 'parmar-hitarth', href: personalInfo.linkedin, color: '#22C55E' },
-  { icon: <MessageCircle size={16} />, label: 'WhatsApp', value: '+91 95869 13540', href: personalInfo.whatsapp, color: '#22C55E' },
+  { icon: <Mail size={16} />, label: 'Email', value: personalInfo.email, href: `mailto:${personalInfo.email}`, color: '#818CF8' },
+  { icon: <Phone size={16} />, label: 'Phone', value: personalInfo.phone, href: `tel:${personalInfo.phone}`, color: '#22D3EE' },
+  { icon: <MapPin size={16} />, label: 'Location', value: personalInfo.location, href: '#', color: '#A855F7' },
+  { icon: <Linkedin size={16} />, label: 'LinkedIn', value: 'parmar-hitarth', href: personalInfo.linkedin, color: '#10B981' },
+  { icon: <MessageCircle size={16} />, label: 'WhatsApp', value: '+91 95869 13540', href: personalInfo.whatsapp, color: '#10B981' },
 ]
 
 export default function Contact() {
@@ -47,10 +47,10 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!form.name || !form.email || !form.message) return
+    localStorage.setItem('contact-draft', JSON.stringify(form))
     setStatus('sending')
 
     try {
-      // Send via EmailJS
       if (window.emailjs) {
         await window.emailjs.send(
           contactInfo.emailjsServiceId,
@@ -65,14 +65,14 @@ export default function Contact() {
         )
       }
 
-      // Also post to Firebase
-      await fetch(contactInfo.firebaseUrl, {
+      await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, timestamp: new Date().toISOString() }),
+        body: JSON.stringify(form),
       })
 
       setStatus('success')
+      localStorage.removeItem('contact-draft')
       setForm({ name: '', email: '', subject: '', message: '' })
       setTimeout(() => setStatus('idle'), 5000)
     } catch {
@@ -81,14 +81,14 @@ export default function Contact() {
     }
   }
 
-  const inputClass = "w-full px-4 py-3.5 rounded-xl text-white text-sm outline-none transition-all duration-200 font-sans placeholder:text-white/25"
+  const inputClass = "w-full px-4 py-3.5 rounded-xl text-white text-sm outline-none transition-all duration-200 font-sans placeholder:text-white/25 focus:outline-none focus:border-[#6366F1]/50 focus:bg-[rgba(99,102,241,0.03)]"
   const inputStyle = {
     background: 'rgba(255,255,255,0.04)',
     border: '1px solid rgba(255,255,255,0.1)',
   }
 
   return (
-    <section id="contact" className="py-24 bg-[#0D1117] lg:pl-16">
+    <section id="contact" className="py-24 bg-[#09091F]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeading
           label="Let's Connect"
@@ -110,7 +110,7 @@ export default function Contact() {
             >
               <span className="text-white">Let&apos;s Work</span>
               <br />
-              <span style={{ color: '#E8B554' }}>Together</span>
+              <span style={{ color: '#6366F1' }}>Together</span>
             </h3>
 
             <div className="space-y-4 mb-8">
@@ -161,7 +161,11 @@ export default function Contact() {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <form onSubmit={handleSubmit} className="glass rounded-2xl p-7 space-y-4">
+            <form
+              onSubmit={handleSubmit}
+              className="rounded-2xl p-7 space-y-4"
+              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(99,102,241,0.12)' }}
+            >
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-xs text-white/40 font-mono mb-2 ml-1">Name *</label>
@@ -216,7 +220,6 @@ export default function Contact() {
                 />
               </div>
 
-              {/* Status messages */}
               {status === 'success' && (
                 <motion.div
                   initial={{ opacity: 0, y: -10 }}
@@ -224,8 +227,8 @@ export default function Contact() {
                   className="flex items-center gap-2 px-4 py-3 rounded-xl"
                   style={{ background: 'rgba(34,197,94,0.1)', border: '1px solid rgba(34,197,94,0.25)' }}
                 >
-                  <CheckCircle size={16} className="text-green-400" />
-                  <span className="text-green-400 text-sm">Message sent! I&apos;ll get back to you soon.</span>
+                  <CheckCircle size={16} className="text-green-500" />
+                  <span className="text-green-600 text-sm">Message sent! I&apos;ll get back to you soon.</span>
                 </motion.div>
               )}
 
@@ -234,28 +237,27 @@ export default function Contact() {
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="flex items-center gap-2 px-4 py-3 rounded-xl"
-                  style={{ background: 'rgba(239,68,68,0.1)', border: '1px solid rgba(239,68,68,0.25)' }}
+                  style={{ background: 'rgba(244,63,94,0.1)', border: '1px solid rgba(244,63,94,0.25)' }}
                 >
-                  <AlertCircle size={16} className="text-red-400" />
-                  <span className="text-red-400 text-sm">Something went wrong. Try emailing directly.</span>
+                  <AlertCircle size={16} className="text-rose-500" />
+                  <span className="text-rose-500 text-sm">Something went wrong. Try emailing directly.</span>
                 </motion.div>
               )}
 
-              {/* Submit button */}
               <motion.button
                 type="submit"
                 disabled={status === 'sending'}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.97 }}
-                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-sm text-[#05080F] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-bold text-sm text-white transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed"
                 style={{
-                  background: 'linear-gradient(135deg, #E8B554 0%, #F5A623 100%)',
-                  boxShadow: '0 8px 32px rgba(232,181,84,0.25)',
+                  background: 'linear-gradient(135deg, #6366F1 0%, #A855F7 100%)',
+                  boxShadow: '0 8px 32px rgba(99,102,241,0.35)',
                 }}
               >
                 {status === 'sending' ? (
                   <>
-                    <div className="w-4 h-4 border-2 border-[#05080F]/40 border-t-[#05080F] rounded-full animate-spin" />
+                    <div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
                     Sending...
                   </>
                 ) : (

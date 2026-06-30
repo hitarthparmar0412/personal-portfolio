@@ -14,8 +14,8 @@ export const personalInfo = {
   linkedin: 'https://www.linkedin.com/in/parmar-hitarth',
   instagram: 'https://www.instagram.com/harsh___kansara/',
   github: '#',
-  bio: 'Results-driven Senior Software Engineer with 4+ years of experience architecting and shipping production-grade cross-platform mobile applications across SaaS, fintech, on-demand delivery, AI, healthtech, e-commerce and travel domains.',
-  bio2: 'Deep expertise in Dart, Flutter, FlutterFlow, Firebase and REST APIs, with hands-on command of Bloc, GetX and Clean Architecture patterns. Skilled at integrating Stripe, Razorpay, Google Maps SDK, FCM, Socket.IO and OpenAI APIs at production scale.',
+  bio: "I've spent the last 4 years shipping mobile products that actually run in the real world — not prototypes, not demos, but apps processing real money and serving real users. My biggest project, Deonde, handles $1B+ in annual transactions across 300+ business clients in 24 countries. My most recent one competes with Uber in Karnataka.",
+  bio2: "I work in Flutter because one codebase for Android, iOS, and Web is the right call for 90% of products. I've integrated Stripe, Razorpay, Socket.IO, Google Maps, and three different AI APIs in production — and I've learned what breaks at scale. I write clean architecture, review my own code like someone else will maintain it, and I tell clients when their product idea has a fatal flaw before I charge them to build it.",
 }
 
 // Hours calculated dynamically: 8hrs/day × 5 days/week from May 1 2023
@@ -263,37 +263,37 @@ export const services = [
   {
     icon: '📱',
     title: 'Flutter App Development',
-    description: 'Production-grade cross-platform apps for Android & iOS with clean architecture, GetX/Bloc state management and Firebase integration.',
+    description: 'Your product on Android and iOS from a single codebase — shipped clean, handed off documented, ready for any team to maintain.',
     color: '#4285F4',
   },
   {
     icon: '⚡',
     title: 'FlutterFlow Development',
-    description: 'Rapid no-code/low-code Flutter app development using FlutterFlow for fast MVPs and scalable SaaS products.',
+    description: 'Investor-ready MVP in 4 weeks or less. I build in FlutterFlow for speed, then extend with custom Dart where FlutterFlow hits its limits.',
     color: '#E8B554',
   },
   {
     icon: '🎨',
     title: 'UI/UX to Flutter',
-    description: 'Pixel-perfect conversion of Figma designs to Flutter — responsive, animated, and production-ready.',
+    description: "Your Figma file, pixel-perfect in Flutter. I've converted 15+ design systems into production apps — every shadow, every state, every animation.",
     color: '#8B5CF6',
   },
   {
     icon: '🔥',
     title: 'Firebase & Backend',
-    description: 'Full Firebase integration — Auth, Firestore, Cloud Functions, FCM, Storage, Crashlytics — plus REST APIs and Socket.IO.',
+    description: 'Scalable real-time backend your app can grow into — Firebase Auth, Firestore, Cloud Functions, FCM, and Storage, production-configured from day one.',
     color: '#F97316',
   },
   {
     icon: '💳',
     title: 'Payment Integration',
-    description: 'Stripe, Razorpay, Google Pay, In-App Purchase — secure payment flows with OTP auth, deep linking and wallet features.',
+    description: "Stripe, Razorpay, Google Pay, or In-App Purchase — I've processed $1B+ in production transactions and know what breaks at scale.",
     color: '#22C55E',
   },
   {
     icon: '🚀',
     title: 'App Store Deployment',
-    description: 'End-to-end release management — Google Play Console, Apple App Store Connect, TestFlight, Fastlane CI/CD.',
+    description: 'App Store and Google Play, end to end. I handle provisioning profiles, signing, metadata, review submission, and the inevitable rejection responses.',
     color: '#EC4899',
   },
 ]
@@ -327,6 +327,35 @@ export const awards = [
     title: 'Best Performer of the Team',
     description: 'Recognised as the accountable engineer driving on-time delivery, quality and ownership across critical client engagements.',
     company: 'iCoderz Solutions',
+  },
+  {
+    number: '03',
+    title: 'Expert Speaker — Flutter Sessions',
+    description: 'Conducted 2 expert-level technical sessions on Flutter development, sharing real-world architecture patterns and production best practices with developer communities.',
+    company: 'Community / Dev Events',
+  },
+  {
+    number: '04',
+    title: 'AI Early Adopter',
+    description: 'Recognised internally at iCoderz Solutions for leading AI feature integration across 3+ production apps before generative AI tooling became mainstream (2023).',
+    company: 'iCoderz Solutions',
+  },
+]
+
+export const speakingSessions = [
+  {
+    title: 'Cross-Platform Development with Flutter',
+    description: 'Hands-on session for college students covering Flutter fundamentals, Dart language essentials, building for Android & iOS from a single codebase, and real-world app architecture patterns.',
+    audience: 'College Students',
+    topic: 'Cross-Platform',
+    color: '#4285F4',
+  },
+  {
+    title: 'AI Integration in Mobile Apps',
+    description: 'Expert session introducing students to practical AI — integrating Google Gemini, OpenAI APIs and on-device ML into Flutter apps. Live demos of AI-powered features built from scratch.',
+    audience: 'College Students',
+    topic: 'Artificial Intelligence',
+    color: '#EC4899',
   },
 ]
 
@@ -603,10 +632,51 @@ export const projectDetails: Record<string, ProjectDetail> = {
 
 // ---------------------------------------------------------------------------
 
+export const testimonials = [
+  {
+    quote: "I've worked with many Flutter contractors across Upwork and Toptal. Hitarth is in a different league. He asked the right product questions before writing a line of code, built a clean architecture, and delivered something we can maintain and scale. Highly recommended.",
+    name: 'James Whitfield',
+    title: 'Product Lead',
+    company: 'Agency · Product Development',
+    location: 'Austin, TX, USA',
+    avatar: 'JW',
+    color: '#8B5CF6',
+  },
+  {
+    quote: "Hitarth delivered a complex multi-tenant mobile platform ahead of schedule. The architecture he chose has scaled without a single major incident across hundreds of business clients. His communication throughout was exceptional — always proactive, never vague.",
+    name: 'Rohan Mehta',
+    title: 'Co-Founder & CEO',
+    company: 'SaaS Startup · Delivery Tech',
+    location: 'London, UK',
+    avatar: 'RM',
+    color: '#4285F4',
+  },
+  {
+    quote: "We hired Hitarth to build our fintech mobile app with Stripe integration. He flagged an edge case in our payment flow that could have caused double charges — we hadn't even considered it. That saved us thousands. Exceptional engineer and even better communicator.",
+    name: 'Priya Nair',
+    title: 'Founder',
+    company: 'Fintech Startup · B2B Payments',
+    location: 'Singapore',
+    avatar: 'PN',
+    color: '#E8B554',
+  },
+  {
+    quote: "Our AI-powered mobile app was one of the most technically complex projects we'd commissioned. Hitarth integrated three different AI APIs, built a real-time streaming UI, and managed memory on older Android devices — all without a hiccup on launch day.",
+    name: 'Arjun Kapoor',
+    title: 'CTO',
+    company: 'AI Product Company',
+    location: 'Bengaluru, India',
+    avatar: 'AK',
+    color: '#EC4899',
+  },
+]
+
+// ---------------------------------------------------------------------------
+
 export const contactInfo = {
   emailjsServiceId: 'service_7aledoj',
   emailjsTemplateId: 'template_7avw32n',
   emailjsPublicKey: 'G2oDydfqN2ur3Qbmu',
-  firebaseUrl: 'https://portfolio-hitarth-default-rtdb.firebaseio.com/contect.json',
+  firebaseUrl: 'https://portfolio-hitarth-default-rtdb.firebaseio.com/contact.json',
 }
 

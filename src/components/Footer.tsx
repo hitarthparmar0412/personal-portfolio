@@ -9,8 +9,8 @@ export default function Footer() {
 
   return (
     <footer
-      className="py-10 lg:pl-16"
-      style={{ background: '#05080F', borderTop: '1px solid rgba(255,255,255,0.06)' }}
+      className="py-10"
+      style={{ background: '#0A0B14', borderTop: '1px solid rgba(255,255,255,0.06)' }}
     >
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col items-center gap-6">
@@ -43,7 +43,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.15, y: -2 }}
-                className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200"
+                className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 hover:text-[#818CF8] hover:border-[#6366F1]"
                 style={{
                   background: 'rgba(255,255,255,0.05)',
                   border: '1px solid rgba(255,255,255,0.08)',

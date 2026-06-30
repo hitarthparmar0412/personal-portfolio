@@ -7,7 +7,7 @@ import { SectionHeading } from '@/components/ui'
 
 export default function Awards() {
   return (
-    <section id="awards" className="py-24 bg-[#05080F] lg:pl-16">
+    <section id="awards" className="py-24 bg-[#050714]">
       <div className="max-w-6xl mx-auto px-6">
         <SectionHeading label="Recognition" title="Awards" />
 
@@ -20,12 +20,13 @@ export default function Awards() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: i * 0.15 }}
               whileHover={{ scale: 1.02, y: -6 }}
-              className="glass rounded-2xl p-8 gold-glow transition-all duration-300 relative overflow-hidden"
+              className="rounded-2xl p-8 transition-all duration-300 relative overflow-hidden"
+              style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)' }}
             >
               {/* Background number watermark */}
               <div
                 className="absolute top-4 right-6 font-display font-black select-none pointer-events-none"
-                style={{ fontSize: '7rem', lineHeight: 1, color: 'rgba(232,181,84,0.04)' }}
+                style={{ fontSize: '7rem', lineHeight: 1, color: 'rgba(99,102,241,0.04)' }}
               >
                 {award.number}
               </div>
@@ -34,13 +35,13 @@ export default function Awards() {
               <div className="flex items-center gap-4 mb-6">
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center"
-                  style={{ background: 'rgba(232,181,84,0.15)', border: '1px solid rgba(232,181,84,0.3)' }}
+                  style={{ background: 'rgba(99,102,241,0.1)', border: '1px solid rgba(99,102,241,0.2)' }}
                 >
-                  <Trophy size={24} color="#E8B554" />
+                  <Trophy size={24} color="#6366F1" />
                 </div>
                 <div
                   className="text-5xl font-display font-black leading-none"
-                  style={{ color: '#E8B554', textShadow: '0 0 40px rgba(232,181,84,0.3)' }}
+                  style={{ color: '#6366F1', textShadow: '0 0 40px rgba(99,102,241,0.2)' }}
                 >
                   {award.number}
                 </div>
@@ -50,7 +51,7 @@ export default function Awards() {
               <h3 className="text-xl font-display font-bold text-white mb-3">
                 {award.title}
               </h3>
-              <p className="text-white/55 text-sm leading-relaxed mb-5">
+              <p className="text-[#1F2937] text-sm leading-relaxed mb-5">
                 {award.description}
               </p>
 
@@ -58,9 +59,9 @@ export default function Awards() {
               <div className="flex items-center gap-2">
                 <div
                   className="w-1.5 h-1.5 rounded-full"
-                  style={{ background: '#E8B554' }}
+                  style={{ background: '#6366F1' }}
                 />
-                <span className="text-xs font-mono text-[#E8B554]">{award.company}</span>
+                <span className="text-xs font-mono text-[#6B7280]">{award.company}</span>
               </div>
             </motion.div>
           ))}
